@@ -87,6 +87,8 @@ minetest.register_on_mods_loaded(function()
 		tools = {}
 	}
 
+	data.mods = minetest.get_modnames()
+
 	map_list(data.nodes, minetest.registered_nodes, node_mapped_keys)
 	map_list(data.items, minetest.registered_items, item_mapped_keys)
 	map_list(data.tools, minetest.registered_tools, tool_mapped_keys)
