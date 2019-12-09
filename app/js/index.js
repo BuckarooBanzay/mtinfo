@@ -6,18 +6,16 @@ import imageresolver from './util/imageresolver.js';
 
 m.request("./mtinfo.json")
 .then(info => {
-	console.log(info);
-
 	const list = [];
 
 	Object.keys(info.nodes)
 	.map(name => info.nodes[name])
-	.forEach(node => list.push(node))
+	.forEach(node => list.push(node));
 
 	Object.keys(info.items)
 	.filter(name => !info.nodes[name])
 	.map(name => info.items[name])
-	.forEach(item => list.push(item))
+	.forEach(item => list.push(item));
 
 
 	const rows = list
@@ -40,4 +38,4 @@ m.request("./mtinfo.json")
 	]);
 
 	m.render(document.getElementById("app"), table);
-})
+});
