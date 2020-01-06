@@ -39,12 +39,12 @@ local item_mapped_keys = {
 
 local tool_mapped_keys = {
 	"name",
-        "description",
-        "groups",
-        "inventory_image",
-        "stack_max",
-        "tool_capabilities",
-        "range"
+  "description",
+  "groups",
+  "inventory_image",
+  "stack_max",
+  "tool_capabilities",
+  "range"
 }
 
 local abm_mapped_keys = {
@@ -73,6 +73,19 @@ local map_list = function(target, list, keys)
 	end
 end
 
+local function copyfile(src, target)
+	local infile = io.open(src, "r")
+	local instr = infile:read("*a")
+	infile:close()
+
+	local outfile = io.open(target, "w")
+	if not outfile then
+		error("File " .. target .. " could not be opened for reading!")
+	end
+	outfile:write(instr)
+	outfile:close()
+end
+
 minetest.register_on_mods_loaded(function()
 
 	local fname = minetest.get_worldpath().."/mtinfo.json"
@@ -88,6 +101,24 @@ minetest.register_on_mods_loaded(function()
 	}
 
 	data.mods = minetest.get_modnames()
+
+	local count = 0
+	for _, modname in ipairs(data.mods) do
+		local modpath = minetest.get_modpath(modname)
+		local worldpath = minetest.get_worldpath()
+		local destination_path = worldpath .. "/textures"
+		minetest.mkdir(destination_path)
+
+		if modpath then
+			local texturepath = modpath .. "/textures"
+			local dir_list = minetest.get_dir_list(texturepath)
+			for _, filename in pairs(dir_list) do
+				count = count + 1
+				copyfile(texturepath .. "/" .. filename, destination_path .. "/" .. filename)
+			end
+		end
+	end
+	print("[mtinfo] exported " .. count .. " textures")
 
 	map_list(data.nodes, minetest.registered_nodes, node_mapped_keys)
 	map_list(data.items, minetest.registered_items, item_mapped_keys)

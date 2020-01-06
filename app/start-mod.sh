@@ -9,3 +9,4 @@ docker run --rm -it \
 	registry.gitlab.com/minetest/minetest/server:5.1.0
 
 cp /tmp/mtinfo/worlds/world/mtinfo.json .
+cp -R /tmp/mtinfo/worlds/world/textures .
