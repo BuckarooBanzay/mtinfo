@@ -10,4 +10,4 @@ docker run --rm -it \
 	-v $(pwd)/:/var/lib/minetest/.minetest/worlds/world/worldmods/mtinfo \
 	registry.gitlab.com/minetest/minetest/server:5.1.0
 
-cp -R /tmp/mtinfo/worlds/world/mtinfo/* app/
+cp -R /tmp/mtinfo/worlds/world/mtinfo .
