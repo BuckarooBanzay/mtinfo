@@ -14,6 +14,10 @@ function mtinfo.copyfile(src, target)
 	local instr = infile:read("*a")
 	infile:close()
 
+	if not instr then
+		return
+	end
+
 	local outfile, err = io.open(target, "w")
 	if not outfile then
 		error("File " .. target .. " could not be opened for writing! " .. err or "")
