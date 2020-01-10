@@ -1,11 +1,18 @@
 
-function mtinfo.map_list(target, list, keys)
+function mtinfo.map_list(target, list, keys, filter)
+	filter = filter or function()
+		-- show all
+		return true
+	end
+
 	for name, def in pairs(list) do
-		local item = {}
-		for _, key in ipairs(keys) do
-			item[key] = def[key]
+		if filter(def) then
+			local item = {}
+			for _, key in ipairs(keys) do
+				item[key] = def[key]
+			end
+			target[name] = item
 		end
-		target[name] = item
 	end
 end
 
