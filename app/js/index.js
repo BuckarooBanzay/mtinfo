@@ -12,7 +12,7 @@ m.request("./data/nodes.json")
 	.map(name => nodes[name])
 	.forEach(node => list.push(node));
 
-	const rows = list
+	let rows = list
 	.filter(node => !(node.groups && node.groups.not_in_creative_inventory == 1))
 	.map(node => {
 		return m("tr", [
@@ -20,6 +20,9 @@ m.request("./data/nodes.json")
 			m("td", node.name)
 		]);
 	});
+
+	// Only show the first few items
+	rows = rows.splice(0, 25);
 
 	const table = m("table", [
 		m("thead", [
