@@ -10,5 +10,5 @@ minetest.register_on_mods_loaded(function()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_lbms, lbm_mapped_keys)
-  mtinfo.export_json(mtinfo.basepath.."/data/lbm.json", data)
+  mtinfo.export_json(mtinfo.basepath.."/data/lbm.js", data, "mtinfo.lbm")
 end)

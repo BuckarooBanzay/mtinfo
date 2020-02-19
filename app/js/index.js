@@ -1,11 +1,11 @@
 
 
-m.request("./data/nodes.json")
-.then(nodes => {
-	const list = [];
+function init(){
 
-	Object.keys(nodes)
-	.map(name => nodes[name])
+	var list = [];
+
+	Object.keys(mtinfo.nodes)
+	.map(name => mtinfo.nodes[name])
 	.forEach(node => list.push(node));
 
 	let rows = list
@@ -31,4 +31,6 @@ m.request("./data/nodes.json")
 	]);
 
 	m.render(document.getElementById("app"), table);
-});
+}
+
+init();

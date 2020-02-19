@@ -6,5 +6,5 @@ minetest.register_on_mods_loaded(function()
     data[name] = minetest.get_all_craft_recipes(name)
   end
 
-  mtinfo.export_json(mtinfo.basepath.."/data/recipes.json", data)
+  mtinfo.export_json(mtinfo.basepath.."/data/recipes.js", data, "mtinfo.recipes")
 end)

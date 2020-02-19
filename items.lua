@@ -12,5 +12,5 @@ minetest.register_on_mods_loaded(function()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_items, item_mapped_keys)
-  mtinfo.export_json(mtinfo.basepath.."/data/items.json", data)
+  mtinfo.export_json(mtinfo.basepath.."/data/items.js", data, "mtinfo.items")
 end)

@@ -36,5 +36,5 @@ minetest.register_on_mods_loaded(function()
 			return true
 		end
 	end)
-  mtinfo.export_json(mtinfo.basepath.."/data/nodes.json", data)
+  mtinfo.export_json(mtinfo.basepath.."/data/nodes.js", data, "mtinfo.nodes")
 end)
