@@ -1,9 +1,5 @@
 
 
-import imageresolver from './util/imageresolver.js';
-
-
-
 m.request("./data/nodes.json")
 .then(nodes => {
 	const list = [];
@@ -16,7 +12,7 @@ m.request("./data/nodes.json")
 	.filter(node => !(node.groups && node.groups.not_in_creative_inventory == 1))
 	.map(node => {
 		return m("tr", [
-			m("td", m("img", { src: imageresolver(node) })),
+			m("td", m("img", { src: mtinfo.imageresolver(node) })),
 			m("td", node.name)
 		]);
 	});

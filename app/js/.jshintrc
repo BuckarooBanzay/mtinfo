@@ -5,6 +5,7 @@
   "browser": true,
   "globals": {
     "L": true,
-    "m": true
+    "m": true,
+		"mtinfo": true
   }
 }

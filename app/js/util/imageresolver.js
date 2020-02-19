@@ -1,14 +1,13 @@
 
-
-function getTransformedImage(imageStr){
+mtinfo.getTransformedImage = function(imageStr){
 	if (imageStr.indexOf("^")){
 		return imageStr.split("^")[0];
 	} else {
 		return imageStr;
 	}
-}
+};
 
-export default function(node){
+mtinfo.imageresolver = function(node){
 	var imgSrc = "textures/unknown_node.png";
 	if (node.inventory_image){
 		imgSrc = "textures/" + node.inventory_image;
@@ -25,5 +24,5 @@ export default function(node){
 		}
 	}
 
-	return getTransformedImage(imgSrc);
-}
+	return mtinfo.getTransformedImage(imgSrc);
+};
