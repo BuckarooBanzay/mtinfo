@@ -26,4 +26,4 @@ Generates a static info-page about the world, stats include:
 
 # License
 
-:men_shrugging:
+:man_shrugging:
