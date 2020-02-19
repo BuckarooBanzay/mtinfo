@@ -22,7 +22,7 @@ m.request("./data/nodes.json")
 	});
 
 	// Only show the first few items
-	rows = rows.splice(0, 25);
+	//rows = rows.splice(0, 25);
 
 	const table = m("table", [
 		m("thead", [
