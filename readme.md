@@ -5,6 +5,7 @@ Project state: **WIP**
 
 ![](https://github.com/BuckarooBanzay/mtinfo/workflows/luacheck/badge.svg)
 ![](https://github.com/BuckarooBanzay/mtinfo/workflows/jshint/badge.svg)
+![](https://github.com/BuckarooBanzay/mtinfo/workflows/htmllint/badge.svg)
 
 
 ## Overview
