@@ -1,4 +1,6 @@
 local count = 0
+local size = 0
+
 for _, modname in ipairs(minetest.get_modnames()) do
   local modpath = minetest.get_modpath(modname)
   local destination_path = mtinfo.basepath .. "/textures"
@@ -9,8 +11,8 @@ for _, modname in ipairs(minetest.get_modnames()) do
     local dir_list = minetest.get_dir_list(texturepath)
     for _, filename in pairs(dir_list) do
       count = count + 1
-      mtinfo.copyfile(texturepath .. "/" .. filename, destination_path .. "/" .. filename)
+      size = size + mtinfo.copyfile(texturepath .. "/" .. filename, destination_path .. "/" .. filename)
     end
   end
 end
-print("[mtinfo] exported " .. count .. " textures")
+print("[mtinfo] exported " .. count .. " textures (" .. size .. " bytes)")

@@ -31,6 +31,8 @@ function mtinfo.copyfile(src, target)
 	end
 	outfile:write(instr)
 	outfile:close()
+
+	return #instr
 end
 
 function mtinfo.copyrecursive(src, target)
