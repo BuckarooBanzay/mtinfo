@@ -1,6 +1,7 @@
 
 mtinfo.routes = {
-	"/": mtinfo.components.Home
+	"/": mtinfo.components.Home,
+	"/detail/:nodename": mtinfo.components.NodeDetail
 };
 
 m.route(document.getElementById("app"), "/", mtinfo.routes);

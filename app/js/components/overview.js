@@ -13,7 +13,7 @@ mtinfo.components.Overview = {
     .map(node => {
       return m("tr", [
         m("td", m("img", { src: mtinfo.imageresolver(node) })),
-        m("td", node.name)
+        m("td", m("a", { href: "#!/detail/" + node.name }, node.name))
       ]);
     });
 
