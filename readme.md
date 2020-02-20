@@ -3,8 +3,8 @@
 
 Project state: **WIP**
 
-![](https://github.com/thomasrudin-mt/mtinfo/workflows/luacheck/badge.svg)
-![](https://github.com/thomasrudin-mt/mtinfo/workflows/jshint/badge.svg)
+![](https://github.com/BuckarooBanzay/mtinfo/workflows/luacheck/badge.svg)
+![](https://github.com/BuckarooBanzay/mtinfo/workflows/jshint/badge.svg)
 
 
 ## Overview
