@@ -1,0 +1,20 @@
+name: htmllint
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: apt
+      run: sudo apt-get install -y nodejs npm
+
+    - name: htmllint install
+      run: sudo npm i -g htmllint-cli
+
+    - name: htmllint run
+      run: cd app/ && htmllint index.html
