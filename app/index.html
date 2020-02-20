@@ -1,19 +1,37 @@
 <html>
-  <head>
-    <title>MT Info</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-  </head>
-  <body>
+<head>
+  <title>MT Info</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+<body>
 	<div id="nav"></div>
-	<br><br><br><br><br>
-	<div class="container-fluid" id="app"></div>
+  <div class="container-fluid" id="app">
+    <br>
+    <h5 style="text-align: center;">Starting mtinfo...</h5>
+  </div>
 
+  <!-- libraries -->
 	<script src="js/lib/mithril.min.js"></script>
+
+  <!-- global namespace -->
 	<script type="text/javascript">
-		mtinfo = {};
+		mtinfo = {
+      components: {}
+    };
 	</script>
+
+  <!-- utils -->
 	<script src="js/util/imageresolver.js"></script>
+
+  <!-- components -->
+  <script src="js/components/home.js"></script>
+  <script src="js/components/nav.js"></script>
+  <script src="js/components/overview.js"></script>
+
+  <!-- data -->
 	<script src="data/nodes.js"></script>
+
+  <!-- init -->
 	<script src="js/index.js"></script>
-  </body>
+</body>
 </html>
