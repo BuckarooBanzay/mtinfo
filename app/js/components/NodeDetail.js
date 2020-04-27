@@ -1,5 +1,5 @@
 
-mtinfo.components.NodeDetail = {
+export default {
   view(vnode){
     return m("div", [
       "Noddef: " + JSON.stringify(mtinfo.nodes[vnode.attrs.nodename]),

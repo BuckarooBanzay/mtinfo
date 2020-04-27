@@ -1,5 +1,5 @@
 
-mtinfo.components.Nav = {
+export default {
   view(){
     return m("div");
   }

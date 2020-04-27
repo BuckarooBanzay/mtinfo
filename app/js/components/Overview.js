@@ -1,5 +1,6 @@
+import imageresolver from '../util/imageresolver.js';
 
-mtinfo.components.Overview = {
+export default {
   view(){
 
     var list = [];
@@ -12,7 +13,7 @@ mtinfo.components.Overview = {
     .filter(node => !(node.groups && node.groups.not_in_creative_inventory == 1))
     .map(node => {
       return m("tr", [
-        m("td", m("img", { src: mtinfo.imageresolver(node) })),
+        m("td", m("img", { src: imageresolver(node) })),
         m("td", m("a", { href: "#!/detail/" + node.name }, node.name))
       ]);
     });

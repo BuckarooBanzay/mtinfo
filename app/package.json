@@ -1,0 +1,19 @@
+{
+  "name": "mtinfo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "cd js && rollup -c rollup.config.js",
+    "jshint": "cd js && jshint .",
+    "test": "mocha",
+    "start": "nodemon -w js/ -i js/bundle.js -x npm run bundle"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jshint": "^2.11.0",
+    "rollup": "^2.7.2"
+  }
+}

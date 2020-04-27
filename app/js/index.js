@@ -1,8 +1,6 @@
 
-mtinfo.routes = {
-	"/": mtinfo.components.Home,
-	"/detail/:nodename": mtinfo.components.NodeDetail
-};
+import routes from './route.js';
+import Nav from './components/Nav.js';
 
-m.route(document.getElementById("app"), "/", mtinfo.routes);
-m.render(document.getElementById("nav"), m(mtinfo.components.Nav));
+m.route(document.getElementById("app"), "/", routes);
+m.render(document.getElementById("nav"), m(Nav));
