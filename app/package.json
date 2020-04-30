@@ -14,6 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "jshint": "^2.11.0",
-    "rollup": "^2.7.3"
+    "rollup": "^2.7.5"
   }
 }
