@@ -1,10 +1,9 @@
 {
-  "undef": true,
-  "unused": true,
   "esversion": 6,
   "browser": true,
   "globals": {
     "m": true,
-		"mtinfo": true
+		"mtinfo": true,
+    "THREE": true
   }
 }
