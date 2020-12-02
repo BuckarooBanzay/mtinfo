@@ -16,7 +16,6 @@ dofile(MP .. "/textures.lua")
 
 -- copy static assets
 minetest.mkdir(mtinfo.basepath .. "/data")
-mtinfo.copyrecursive(MP .. "/app/js/lib", mtinfo.basepath .. "/js/lib")
+mtinfo.copyrecursive(MP .. "/app/js", mtinfo.basepath .. "/js")
 mtinfo.copyrecursive(MP .. "/app/css", mtinfo.basepath .. "/css")
-mtinfo.copyfile(MP .. "/app/js/bundle.js", mtinfo.basepath .. "/js/bundle.js")
 mtinfo.copyfile(MP .. "/app/index.html", mtinfo.basepath .. "/index.html")

@@ -2,7 +2,8 @@
   "esversion": 6,
   "browser": true,
   "globals": {
-    "m": true,
+    "Vue": true,
+    "VueRouter": true,
 		"mtinfo": true,
     "THREE": true
   }
