@@ -4,7 +4,10 @@ const router = new VueRouter({
     path: "/",
     component: { template: `<start-page/>` }
   },{
-    path: "/node/:name",
+    path: "/nodes",
+    component: { template: `<node-list/>` }
+  },{
+    path: "/nodes/:name",
     component: { template: `<node-info v-bind:name="$route.params.name"/>` }
   }]
 });
