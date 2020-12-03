@@ -45,6 +45,8 @@ Vue.component("node-info", {
         <div class="col-md-6">
           <!-- <img :src="previewImage" style="height: 64px; width: 64px;"/> -->
           <node-preview-normal v-if="mtinfo.nodes[name].drawtype == 'normal'" :node="mtinfo.nodes[name]"></node-preview-normal>
+          <node-preview-normal v-if="mtinfo.nodes[name].drawtype == 'glasslike'" :node="mtinfo.nodes[name]"></node-preview-normal>
+          <node-preview-normal v-if="mtinfo.nodes[name].drawtype == 'allfaces_optional'" :node="mtinfo.nodes[name]"></node-preview-normal>
           <div v-else>
             No preview available
           </div>
