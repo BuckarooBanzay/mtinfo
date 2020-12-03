@@ -9,7 +9,10 @@ function mtinfo.map_list(target, list, keys, filter)
 		if filter(def) then
 			local item = {}
 			for _, key in ipairs(keys) do
-				item[key] = def[key]
+				if def[key] then
+					-- only export fields that are populated
+					item[key] = def[key]
+				end
 			end
 			target[name] = item
 		end
