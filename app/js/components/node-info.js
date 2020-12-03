@@ -44,7 +44,10 @@ Vue.component("node-info", {
       <div class="row">
         <div class="col-md-6">
           <!-- <img :src="previewImage" style="height: 64px; width: 64px;"/> -->
-          <node-preview :node="mtinfo.nodes[name]"></node-preview>
+          <node-preview-normal v-if="mtinfo.nodes[name].drawtype == 'normal'" :node="mtinfo.nodes[name]"></node-preview-normal>
+          <div v-else>
+            No preview available
+          </div>
         </div>
         <div class="col-md-6">
         </div>
@@ -54,45 +57,66 @@ Vue.component("node-info", {
 });
 
 
-Vue.component("node-preview", {
+Vue.component("node-preview-normal", {
   props: ["node"],
   computed: {
     frontStyle: function(){
+      let texture = "pics/unknown_node.png";
+      if (this.node.tiles){
+        if (this.node.tiles.length >= 3) {
+          // x+
+          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[2]);
+        } else {
+          // last tile
+          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[this.node.tiles.length-1]);
+        }
+      }
+
       return {
         "transform-origin": "0 0",
 	      "position": "absolute",
         "width": "100px",
         "height": "100px",
-        "background-image": "url('textures/bones_side.png')",
+        "background-image": "url('" + texture + "')",
       	"background-size": "cover",
-      	"-ms-transform": "rotate(0deg) skewY(30deg) scaleX(0.864) translate(31px, 69px)",
-      	"-webkit-transform": "rotate(0deg) skewY(30deg) scaleX(0.864) translate(31px, 69px)",
       	"transform": "rotate(0deg) skewY(30deg) scaleX(0.864) translate(31px, 69px)"
       };
     },
     sideStyle: function(){
+      let texture = "pics/unknown_node.png";
+      if (this.node.tiles){
+        if (this.node.tiles.length >= 5) {
+          // z+
+          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[4]);
+        } else {
+          // last tile
+          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[this.node.tiles.length-1]);
+        }
+      }
+
       return {
         "transform-origin": "0 0",
 	      "position": "absolute",
         "width": "100px",
         "height": "100px",
-        "background-image": "url('textures/bones_side.png')",
+        "background-image": "url('" + texture + "')",
         "background-size": "cover",
-        "-ms-transform": "rotate(-30deg) skewX(-30deg) translate(130px, 173px) scaleY(0.864)",
-        "-webkit-transform": "rotate(-30deg) skewX(-30deg) translate(130px, 173px) scaleY(0.864)",
         "transform": "rotate(-30deg) skewX(-30deg) translate(130px, 173px) scaleY(0.864)"
       };
     },
     topStyle: function(){
+      let texture = "pics/unknown_node.png";
+      if (this.node.tiles && this.node.tiles.length >= 1){
+        texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[0]);
+      }
+
       return {
         "transform-origin": "0 0",
 	      "position": "absolute",
         "width": "100px",
         "height": "100px",
-        "background": "url('textures/bones_top.png')",
+        "background-image": "url('" + texture + "')",
       	"background-size": "cover",
-      	"-ms-transform": "rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);",
-      	"-webkit-transform": "rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);",
       	"transform": "rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864)"
       };
     }

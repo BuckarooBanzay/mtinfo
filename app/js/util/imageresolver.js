@@ -1,4 +1,11 @@
 
+mtinfo.stripimagetransforms = function(imgSrc){
+	if (imgSrc.indexOf("^")){
+		return imgSrc.split("^")[0];
+	} else {
+		return imgSrc;
+	}
+};
 
 mtinfo.imageresolver = function(node){
 	var imgSrc = "textures/unknown_node.png";

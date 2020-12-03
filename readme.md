@@ -28,3 +28,8 @@ Generates a static info-page about the world, stats include:
 # License
 
 :man_shrugging:
+
+## pics/unknown_node.png
+
+* CC BY-SA 3.0
+* https://github.com/minetest/minetest
