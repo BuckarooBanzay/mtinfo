@@ -5,7 +5,8 @@ Vue.component("node-info", {
 		const nodedef = mtinfo.nodes[this.name];
 
 		//TODO: debug
-		console.log(nodedef);
+		console.log("nodedef", nodedef);
+		console.log("recipes", mtinfo.recipes[this.name]);
 	},
   computed: {
     previewImage: function(){
