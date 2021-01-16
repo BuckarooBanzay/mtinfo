@@ -10,8 +10,8 @@ Vue.component("nav-bar", {
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/nodes/default:chest" class="nav-link">
-            <i class="fa fa-question"></i> Test
+          <router-link to="/nodes" class="nav-link">
+            <i class="fa fa-question"></i> Nodes
           </router-link>
         </li>
       </ul>
