@@ -6,9 +6,9 @@ local lbm_mapped_keys = {
 	"run_at_every_load"
 }
 
-minetest.register_on_mods_loaded(function()
+mtinfo.export_lbms = function()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_lbms, lbm_mapped_keys)
   mtinfo.export_json(mtinfo.basepath.."/data/lbm.js", data, "mtinfo.lbm")
-end)
+end

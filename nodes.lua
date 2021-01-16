@@ -26,7 +26,7 @@ local node_mapped_keys = {
 	"drop"
 }
 
-minetest.register_on_mods_loaded(function()
+mtinfo.export_nodes = function()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_nodes, node_mapped_keys, function(def)
@@ -37,4 +37,4 @@ minetest.register_on_mods_loaded(function()
 		end
 	end)
   mtinfo.export_json(mtinfo.basepath.."/data/nodes.js", data, "mtinfo.nodes")
-end)
+end

@@ -16,5 +16,3 @@ new Vue({
   el: "#app",
   router: router
 });
-
-console.log("OK");

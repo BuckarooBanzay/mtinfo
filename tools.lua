@@ -8,9 +8,9 @@ local tool_mapped_keys = {
   "range"
 }
 
-minetest.register_on_mods_loaded(function()
+mtinfo.export_tools = function()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_tools, tool_mapped_keys)
   mtinfo.export_json(mtinfo.basepath.."/data/tools.js", data, "mtinfo.tools")
-end)
+end

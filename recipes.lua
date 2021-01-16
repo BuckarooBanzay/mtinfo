@@ -1,5 +1,5 @@
 
-minetest.register_on_mods_loaded(function()
+mtinfo.export_recipes = function()
   local data = {}
 
   for name in pairs(minetest.registered_nodes) do
@@ -7,4 +7,4 @@ minetest.register_on_mods_loaded(function()
   end
 
   mtinfo.export_json(mtinfo.basepath.."/data/recipes.js", data, "mtinfo.recipes")
-end)
+end

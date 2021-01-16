@@ -14,9 +14,29 @@ dofile(MP .. "/lbm.lua")
 dofile(MP .. "/recipes.lua")
 dofile(MP .. "/textures.lua")
 
--- copy static assets
-minetest.mkdir(mtinfo.basepath .. "/data")
-mtinfo.copyrecursive(MP .. "/app/pics", mtinfo.basepath .. "/pics")
-mtinfo.copyrecursive(MP .. "/app/js", mtinfo.basepath .. "/js")
-mtinfo.copyrecursive(MP .. "/app/css", mtinfo.basepath .. "/css")
-mtinfo.copyfile(MP .. "/app/index.html", mtinfo.basepath .. "/index.html")
+minetest.register_on_mods_loaded(function()
+
+	-- workaround for empty translations, defer a globalstep until everything is initialized
+	minetest.after(0, function()
+		local start = minetest.get_us_time()
+
+		-- export data
+		mtinfo.export_nodes()
+		mtinfo.export_lbms()
+		mtinfo.export_abms()
+		mtinfo.export_items()
+		mtinfo.export_recipes()
+		mtinfo.export_tools()
+
+		-- copy static assets
+		minetest.mkdir(mtinfo.basepath)
+		minetest.mkdir(mtinfo.basepath .. "/data")
+		mtinfo.copyrecursive(MP .. "/app/pics", mtinfo.basepath .. "/pics")
+		mtinfo.copyrecursive(MP .. "/app/js", mtinfo.basepath .. "/js")
+		mtinfo.copyrecursive(MP .. "/app/css", mtinfo.basepath .. "/css")
+		mtinfo.copyfile(MP .. "/app/index.html", mtinfo.basepath .. "/index.html")
+
+		local diff = minetest.get_us_time() - start
+		print("[mtinfo] export took " .. diff .. " us")
+	end)
+end)

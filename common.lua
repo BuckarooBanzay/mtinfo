@@ -12,6 +12,10 @@ function mtinfo.map_list(target, list, keys, filter)
 				if def[key] and def[key] ~= 0 then
 					-- only export fields that are populated
 					item[key] = def[key]
+					if key == "description" then
+						-- translate content
+						item[key] = minetest.get_translated_string("", def[key])
+					end
 				end
 			end
 			target[name] = item
@@ -56,8 +60,8 @@ end
 function mtinfo.export_json(fname, data, varname)
 	local f = io.open(fname, "w")
 	local data_string, err = minetest.write_json(data)
-	if err then
-		error(err)
+	if err or not f then
+		error("error while opening " .. fname .. " " .. (err or ""))
 	end
 	f:write(varname .. "=")
 	f:write(data_string)
