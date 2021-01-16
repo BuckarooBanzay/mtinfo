@@ -32,7 +32,7 @@ Generates a static info-page about the world, stats include:
 
 # License
 
-:man_shrugging:
+MIT
 
 ## pics/unknown_node.png
 
