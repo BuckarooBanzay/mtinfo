@@ -25,6 +25,11 @@ Generates a static info-page about the world, stats include:
 * Start the world
 * Open the generated `index.html` in the world-folder `mtinfo` with a web-browser
 
+# Contributors
+
+* https://github.com/BuckarooBanzay
+* https://github.com/BobFred7
+
 # License
 
 :man_shrugging:
