@@ -1,29 +1,34 @@
 Vue.component("node-list", {
+	computed: {
+		list: function(){
+			return Object.keys(mtinfo.nodes).map(nodename => {
+				return mtinfo.nodes[nodename];
+			});
+		}
+	},
   template: /*html*/`
     <div>
       <h4>Node list</h4>
-      <table class="table">
-        <thead>
+      <paged-table v-bind:list="list">
+        <template v-slot:header>
           <tr>
             <th>Mod</th>
             <th>Image</th>
             <th>Nodename</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr v-for="nodename in Object.keys(mtinfo.nodes)">
-            <td>{{ nodename.substring(0, nodename.indexOf(":")) }}</td>
-            <td>
-              <img :src="mtinfo.imageresolver(mtinfo.nodes[nodename])"/>
-            </td>
-            <td>
-              <router-link :to="'/nodes/' + nodename">
-                {{ nodename }}
-              </router-link>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        </template>
+        <template v-slot:row="{ item }">
+          <td>{{ item.name.substring(0, item.name.indexOf(":")) }}</td>
+          <td>
+            <img :src="mtinfo.imageresolver(item)"/>
+          </td>
+          <td>
+            <router-link :to="'/nodes/' + item.name">
+              {{ item.name }}
+            </router-link>
+          </td>
+        </template>
+      </paged-table>
     </div>
   `
 });
