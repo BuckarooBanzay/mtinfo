@@ -1,16 +1,26 @@
 
 Vue.component("paged-table", {
+	data: function(){
+		return {
+			itemcount: 20
+		};
+	},
 	computed: {
 		items: function(){
-			const start = (this.page-1) * 10;
-			const end = start + 10;
+			const start = (this.page-1) * this.itemcount;
+			const end = start + this.itemcount;
 			return this.list.slice(start, end);
 		},
 		pages: function(){
-			const pages = Math.ceil(this.list.length / 10);
-			return {
-				pages: pages
-			};
+			const count = Math.ceil(this.list.length / this.itemcount);
+			const pages = [];
+			for (let i=1; i<=count; i++){
+				pages.push({
+					number: i,
+					active: this.page == i
+				});
+			}
+			return pages;
 		}
 	},
 	props: ["list", "page"],
