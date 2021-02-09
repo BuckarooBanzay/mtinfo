@@ -6,5 +6,3 @@ docker run --rm -i \
   -v $(pwd)/:/root/.minetest/worlds/world/worldmods/mtinfo \
 	-v $(pwd)/output:/root/.minetest/worlds/world/mtinfo \
 	registry.gitlab.com/minetest/minetest/server:5.3.0
-
-ls -lha output

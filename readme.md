@@ -8,6 +8,7 @@ Project state: **WIP**
 ![](https://github.com/BuckarooBanzay/mtinfo/workflows/htmllint/badge.svg)
 ![](https://github.com/BuckarooBanzay/mtinfo/workflows/generate/badge.svg)
 
+Demo: https://buckaroobanzay.github.io/mtinfo/
 
 ## Overview
 
