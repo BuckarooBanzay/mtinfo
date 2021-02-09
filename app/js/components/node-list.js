@@ -1,4 +1,14 @@
 Vue.component("node-list", {
+	data: function(){
+		return {
+			page: +this.$route.query.page || 1
+		};
+	},
+	watch: {
+		$route: function(){
+			this.page = +this.$route.query.page || 1;
+		}
+	},
 	computed: {
 		list: function(){
 			return Object.keys(mtinfo.nodes).map(nodename => {
@@ -9,13 +19,11 @@ Vue.component("node-list", {
   template: /*html*/`
     <div>
       <h4>Node list</h4>
-      <paged-table v-bind:list="list">
+      <paged-table v-bind:list="list" v-bind:page="page">
         <template v-slot:header>
-          <tr>
-            <th>Mod</th>
-            <th>Image</th>
-            <th>Nodename</th>
-          </tr>
+          <th>Mod</th>
+          <th>Image</th>
+          <th>Nodename</th>
         </template>
         <template v-slot:row="{ item }">
           <td>{{ item.name.substring(0, item.name.indexOf(":")) }}</td>
@@ -28,6 +36,9 @@ Vue.component("node-list", {
             </router-link>
           </td>
         </template>
+				<template v-slot:pager="{ pages }">
+					Footer {{ JSON.stringify(pages) }}
+				</template
       </paged-table>
     </div>
   `
