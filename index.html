@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>MT Info</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+<body>
+  <div id="app">
+    <app></app>
+  </div>
+
+  <!-- libraries -->
+  <script src="js/lib/vue.min.js"></script>
+  <script src="js/lib/vue-router.min.js"></script>
+
+  <!-- global namespace -->
+  <script type="text/javascript">
+    mtinfo = {};
+  </script>
+
+  <!-- components -->
+  <script src="js/components/app.js"></script>
+	<script src="js/components/start-page.js"></script>
+	<script src="js/components/paged-table.js"></script>
+	<script src="js/components/stats.js"></script>
+	<script src="js/components/nav-bar.js"></script>
+	<script src="js/components/node-list.js"></script>
+	<script src="js/components/node-detail.js"></script>
+	<script src="js/components/node-preview-normal.js"></script>
+	<script src="js/components/node-preview-inventoryimage.js"></script>
+	<script src="js/components/node-info.js"></script>
+	<script src="js/components/abm-info.js"></script>
+
+  <!-- Utilities -->
+  <script src="js/util/imageresolver.js"></script>
+
+  <!-- exported data -->
+  <script src="data/nodes.js"></script>
+	<script src="data/recipes.js"></script>
+	<script src="data/abm.js"></script>
+	<script src="data/lbm.js"></script>
+
+	<!-- precomputations -->
+  <script src="js/util/compute_abm_nodes.js"></script>
+
+	<!-- init -->
+  <script src="js/main.js"></script>
+</body>
+</html>
