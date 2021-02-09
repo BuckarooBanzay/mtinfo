@@ -20,6 +20,10 @@ minetest.register_on_mods_loaded(function()
 	minetest.after(0, function()
 		local start = minetest.get_us_time()
 
+		-- copy static assets
+		minetest.mkdir(mtinfo.basepath)
+		minetest.mkdir(mtinfo.basepath .. "/data")
+
 		-- export data
 		mtinfo.export_nodes()
 		mtinfo.export_lbms()
@@ -28,9 +32,6 @@ minetest.register_on_mods_loaded(function()
 		mtinfo.export_recipes()
 		mtinfo.export_tools()
 
-		-- copy static assets
-		minetest.mkdir(mtinfo.basepath)
-		minetest.mkdir(mtinfo.basepath .. "/data")
 		mtinfo.copyrecursive(MP .. "/app/pics", mtinfo.basepath .. "/pics")
 		mtinfo.copyrecursive(MP .. "/app/js", mtinfo.basepath .. "/js")
 		mtinfo.copyrecursive(MP .. "/app/css", mtinfo.basepath .. "/css")
@@ -38,5 +39,9 @@ minetest.register_on_mods_loaded(function()
 
 		local diff = minetest.get_us_time() - start
 		print("[mtinfo] export took " .. diff .. " us")
+
+		if minetest.settings:get_bool("mtinfo.autoshutdown") then
+			minetest.request_shutdown("autoshutdown")
+		end
 	end)
 end)
