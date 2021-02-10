@@ -12,7 +12,10 @@ const router = new VueRouter({
   },{
     path: "/abms/:abm_key",
     component: { template: `<abm-info v-bind:abm_key="$route.params.abm_key"/>` }
-  }]
+  },{
+		path: "/test",
+		component: { template: `<threejs-test/>` }
+	}]
 });
 
 new Vue({
