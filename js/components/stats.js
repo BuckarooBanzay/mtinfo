@@ -14,6 +14,14 @@ Vue.component("stats", {
 				<td>Number of LBM's</td>
 				<td>{{ mtinfo.lbm.length }}</td>
 			</tr>
+			<tr>
+				<td>Number of textures</td>
+				<td>{{ mtinfo.textures.count }}</td>
+			</tr>
+			<tr>
+				<td>Size of textures</td>
+				<td>{{ mtinfo.textures.size }} bytes</td>
+			</tr>
 		</table>
 	`
 });
