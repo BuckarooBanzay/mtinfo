@@ -1,5 +1,5 @@
 
-mtinfo.export_recipes = function()
+function mtinfo.export_recipes()
   local data = {}
 
   for name in pairs(minetest.registered_nodes) do

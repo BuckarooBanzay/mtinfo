@@ -8,7 +8,7 @@ local tool_mapped_keys = {
   "range"
 }
 
-mtinfo.export_tools = function()
+function mtinfo.export_tools()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_tools, tool_mapped_keys)

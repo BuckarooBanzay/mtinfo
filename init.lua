@@ -32,6 +32,9 @@ minetest.register_on_mods_loaded(function()
 		mtinfo.export_recipes()
 		mtinfo.export_tools()
 
+		-- export textures
+		mtinfo.export_textures()
+
 		mtinfo.copyrecursive(MP .. "/app/pics", mtinfo.basepath .. "/pics")
 		mtinfo.copyrecursive(MP .. "/app/js", mtinfo.basepath .. "/js")
 		mtinfo.copyrecursive(MP .. "/app/css", mtinfo.basepath .. "/css")

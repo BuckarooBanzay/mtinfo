@@ -6,7 +6,7 @@ local lbm_mapped_keys = {
 	"run_at_every_load"
 }
 
-mtinfo.export_lbms = function()
+function mtinfo.export_lbms()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_lbms, lbm_mapped_keys)

@@ -26,7 +26,7 @@ local node_mapped_keys = {
 	"drop"
 }
 
-mtinfo.export_nodes = function()
+function mtinfo.export_nodes()
   local data = {}
 
   mtinfo.map_list(data, minetest.registered_nodes, node_mapped_keys, function(def)
