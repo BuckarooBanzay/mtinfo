@@ -28,7 +28,7 @@ Vue.component("node-list", {
         <template v-slot:row="{ item }">
           <td>{{ item.name.substring(0, item.name.indexOf(":")) }}</td>
           <td>
-            <img :src="mtinfo.imageresolver(item)"/>
+            <node-preview :node="item" size="32"/>
           </td>
           <td>
             <router-link :to="'/nodes/' + item.name">

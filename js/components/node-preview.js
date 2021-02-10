@@ -2,8 +2,7 @@
 Vue.component("node-preview", {
   props: {
 		node: { type: "string" },
-		height: { type: "number", default: 300 },
-		width: { type: "number", default: 300 },
+		size: { type: "number", default: 300 }
 	},
 	computed: {
 		previewType: function(){
@@ -22,14 +21,12 @@ Vue.component("node-preview", {
 		<node-preview-inventoryimage
 			v-if="previewType == 'invimage'"
 			:node="node"
-			:height="height"
-			:width="width">
+			:size="size">
 		</node-preview-inventoryimage>
 		<node-preview-normal
 			v-else-if="previewType == 'normal'"
 			:node="node"
-			:height="height"
-			:width="width">
+			:size="size">
 		</node-preview-normal>
 	</div>
   `
@@ -38,7 +35,7 @@ Vue.component("node-preview", {
 
 
 Vue.component("node-preview-inventoryimage", {
-  props: ["node", "height", "width"],
+  props: ["node", "size"],
 	computed: {
 		imgsrc: function(){
 			if (this.node.inventory_image)
@@ -48,19 +45,22 @@ Vue.component("node-preview-inventoryimage", {
 		}
 	},
   template: /*html*/`
-		<img :src="imgsrc" :width="width" :height="height" style="image-rendering: crisp-edges;"/>
+		<img :src="imgsrc" :width="size" :height="size" style="image-rendering: crisp-edges;"/>
   `
 });
 
 Vue.component("node-preview-normal", {
-  props: ["node", "height", "width"],
+  props: ["node", "size"],
+	created: function(){
+		console.log("node-preview-normal", this.node);
+	},
   computed: {
 		common_attributes: function(){
 			return {
 				"transform-origin": "0 0",
 				"position": "absolute",
-				"width": (this.width/3) + "px",
-				"height": (this.height/3) + "px",
+				"width": (this.size/3) + "px",
+				"height": (this.size/3) + "px",
 				"background-size": "cover",
 				"image-rendering": "crisp-edges"
 			};
@@ -79,7 +79,7 @@ Vue.component("node-preview-normal", {
 
       return Object.assign({}, this.common_attributes, {
         "background-image": "url('" + texture + "')",
-      	"transform": "rotate(0deg) skewY(30deg) scaleX(0.864) translate(31px, 69px)" //TODO: scale
+      	"transform": `rotate(0deg) skewY(30deg) scaleX(0.864) translate(${this.size*0.1033}px, ${this.size*0.23}px)`
       });
     },
     sideStyle: function(){
@@ -96,7 +96,7 @@ Vue.component("node-preview-normal", {
 
 			return Object.assign({}, this.common_attributes, {
         "background-image": "url('" + texture + "')",
-        "transform": "rotate(-30deg) skewX(-30deg) translate(130px, 173px) scaleY(0.864)" //TODO: scale
+        "transform": `rotate(-30deg) skewX(-30deg) translate(${this.size*0.433}px, ${this.size*0.5766}px) scaleY(0.864)`
       });
     },
     topStyle: function(){
@@ -107,12 +107,12 @@ Vue.component("node-preview-normal", {
 
 			return Object.assign({}, this.common_attributes, {
         "background-image": "url('" + texture + "')",
-      	"transform": "rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864)" //TODO: scale
+      	"transform": `rotate(210deg) skew(-30deg) translate(-${this.size/3*2}px, -${this.size*0.2}px) scaleY(0.864)`
       });
     }
   },
   template: /*html*/`
-    <div v-bind:style="{ overflow: 'hidden', width: width + 'px', height: height + 'px' }">
+    <div v-bind:style="{ overflow: 'hidden', width: size + 'px', height: size + 'px' }">
 			<div v-bind:style="frontStyle"></div>
 			<div v-bind:style="sideStyle"></div>
 			<div v-bind:style="topStyle"></div>
