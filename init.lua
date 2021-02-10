@@ -35,6 +35,7 @@ minetest.register_on_mods_loaded(function()
 		mtinfo.copyrecursive(MP .. "/app/pics", mtinfo.basepath .. "/pics")
 		mtinfo.copyrecursive(MP .. "/app/js", mtinfo.basepath .. "/js")
 		mtinfo.copyrecursive(MP .. "/app/css", mtinfo.basepath .. "/css")
+		mtinfo.copyrecursive(MP .. "/app/webfonts", mtinfo.basepath .. "/webfonts")
 		mtinfo.copyfile(MP .. "/app/index.html", mtinfo.basepath .. "/index.html")
 
 		local diff = minetest.get_us_time() - start
