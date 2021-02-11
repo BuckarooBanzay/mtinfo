@@ -3,8 +3,8 @@ Vue.component("stats", {
 	template: /*html*/`
 		<table class="table table-striped table-condensed">
 			<tr>
-				<td>Number of nodes</td>
-				<td>{{ Object.keys(mtinfo.nodes).length }}</td>
+				<td>Number of items</td>
+				<td>{{ Object.keys(mtinfo.items).length }}</td>
 			</tr>
 			<tr>
 				<td>Number of ABM's</td>
