@@ -8,5 +8,5 @@ docker run --rm -i \
 	registry.gitlab.com/minetest/minetest/server:5.3.0
 
 test -f $(pwd)/output/index.html || exit 1
-test -f $(pwd)/output/data/items.json || exit 1
+test -f $(pwd)/output/data/items.js || exit 1
 test -d $(pwd)/output/textures || exit 1
