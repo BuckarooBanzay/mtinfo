@@ -1,11 +1,15 @@
 
 Vue.component("item-preview", {
   props: {
-		item: { type: "string" },
+		item: { type: "object" },
+		link: { type: "boolean", default: true },
 		size: { type: "number", default: 300 }
 	},
 	computed: {
 		previewType: function(){
+			if (this.item.inventory_image){
+				return "invimage";
+			}
 			switch (this.item.drawtype){
 				case "normal": return "normal";
 				case "glasslike": return "normal";
@@ -17,7 +21,7 @@ Vue.component("item-preview", {
 		}
 	},
   template: /*html*/`
-	<div>
+	<router-link :to="'/items/' + item.name" :title="item.name">
 		<item-preview-inventoryimage
 			v-if="previewType == 'invimage'"
 			:item="item"
@@ -28,7 +32,7 @@ Vue.component("item-preview", {
 			:item="item"
 			:size="size">
 		</item-preview-normal>
-	</div>
+	</router-link>
   `
 });
 

@@ -1,0 +1,12 @@
+
+.inventory-table td {
+	width: 64px;
+	height: 64px;
+	background: #00000065;
+	padding: 0px;
+	border: 0.25em solid #343434;
+}
+
+table.inventory-table {
+	table-layout: fixed;
+}
