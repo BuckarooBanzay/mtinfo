@@ -1,4 +1,4 @@
-Vue.component("node-list", {
+Vue.component("item-list", {
 	data: function(){
 		return {
 			page: +this.$route.query.page || 1
@@ -18,7 +18,7 @@ Vue.component("node-list", {
 	},
   template: /*html*/`
     <div>
-      <h4>Node list</h4>
+      <h4>Item list</h4>
       <paged-table v-bind:list="list" v-bind:page="page">
         <template v-slot:header>
           <th>Mod</th>
@@ -28,10 +28,10 @@ Vue.component("node-list", {
         <template v-slot:row="{ item }">
           <td>{{ item.name.substring(0, item.name.indexOf(":")) }}</td>
           <td>
-            <node-preview :node="item" size="32"/>
+            <item-preview :item="item" size="32"/>
           </td>
           <td>
-            <router-link :to="'/nodes/' + item.name">
+            <router-link :to="'/items/' + item.name">
               {{ item.name }}
             </router-link>
           </td>
@@ -41,7 +41,7 @@ Vue.component("node-list", {
           <nav aria-label="Page navigation example">
            <ul class="pagination">
             <li v-bind:class="{ 'page-item': true, 'active': page.active }" v-for="page in pages">
-             <router-link :to="'/nodes?page=' + page.number" class="page-link">
+             <router-link :to="'/items?page=' + page.number" class="page-link">
               {{ page.number }}
              </router-link>
             </li>

@@ -1,12 +1,12 @@
 
-Vue.component("node-preview", {
+Vue.component("item-preview", {
   props: {
-		node: { type: "string" },
+		item: { type: "string" },
 		size: { type: "number", default: 300 }
 	},
 	computed: {
 		previewType: function(){
-			switch (this.node.drawtype){
+			switch (this.item.drawtype){
 				case "normal": return "normal";
 				case "glasslike": return "normal";
 				case "allfaces_optional": return "normal";
@@ -18,28 +18,28 @@ Vue.component("node-preview", {
 	},
   template: /*html*/`
 	<div>
-		<node-preview-inventoryimage
+		<item-preview-inventoryimage
 			v-if="previewType == 'invimage'"
-			:node="node"
+			:item="item"
 			:size="size">
-		</node-preview-inventoryimage>
-		<node-preview-normal
+		</item-preview-inventoryimage>
+		<item-preview-normal
 			v-else-if="previewType == 'normal'"
-			:node="node"
+			:item="item"
 			:size="size">
-		</node-preview-normal>
+		</item-preview-normal>
 	</div>
   `
 });
 
 
 
-Vue.component("node-preview-inventoryimage", {
-  props: ["node", "size"],
+Vue.component("item-preview-inventoryimage", {
+  props: ["item", "size"],
 	computed: {
 		imgsrc: function(){
-			if (this.node.inventory_image)
-				return `textures/${this.node.inventory_image}`;
+			if (this.item.inventory_image)
+				return `textures/${this.item.inventory_image}`;
 			else
 				return "pics/unknown_node.png";
 		}
@@ -49,8 +49,8 @@ Vue.component("node-preview-inventoryimage", {
   `
 });
 
-Vue.component("node-preview-normal", {
-  props: ["node", "size"],
+Vue.component("item-preview-normal", {
+  props: ["item", "size"],
   computed: {
 		common_attributes: function(){
 			return {
@@ -64,13 +64,13 @@ Vue.component("node-preview-normal", {
 		},
     frontStyle: function(){
       let texture = "pics/unknown_node.png";
-      if (this.node.tiles){
-        if (this.node.tiles.length >= 3) {
+      if (this.item.tiles){
+        if (this.item.tiles.length >= 3) {
           // x+
-          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[2]);
+          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[2]);
         } else {
           // last tile
-          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[this.node.tiles.length-1]);
+          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[this.item.tiles.length-1]);
         }
       }
 
@@ -81,13 +81,13 @@ Vue.component("node-preview-normal", {
     },
     sideStyle: function(){
       let texture = "pics/unknown_node.png";
-      if (this.node.tiles){
-        if (this.node.tiles.length >= 5) {
+      if (this.item.tiles){
+        if (this.item.tiles.length >= 5) {
           // z+
-          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[4]);
+          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[4]);
         } else {
           // last tile
-          texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[this.node.tiles.length-1]);
+          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[this.item.tiles.length-1]);
         }
       }
 
@@ -98,8 +98,8 @@ Vue.component("node-preview-normal", {
     },
     topStyle: function(){
       let texture = "pics/unknown_node.png";
-      if (this.node.tiles && this.node.tiles.length >= 1){
-        texture = "textures/" + mtinfo.stripimagetransforms(this.node.tiles[0]);
+      if (this.item.tiles && this.item.tiles.length >= 1){
+        texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[0]);
       }
 
 			return Object.assign({}, this.common_attributes, {

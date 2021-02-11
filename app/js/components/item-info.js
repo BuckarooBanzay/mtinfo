@@ -1,8 +1,8 @@
 
-Vue.component("node-info", {
+Vue.component("item-info", {
   props: ["name"],
 	computed: {
-		node: function(){
+		item: function(){
 			return mtinfo.items[this.name];
 		},
 		recipes: function(){
@@ -13,10 +13,10 @@ Vue.component("node-info", {
     <div>
       <div class="row">
         <div class="col-md-3">
-					<node-preview :node="node"/>
+					<item-preview :item="item"/>
         </div>
         <div class="col-md-9">
-					<node-detail :node="node"/>
+					<item-detail :item="item"/>
         </div>
       </div>
 			<div class="row">

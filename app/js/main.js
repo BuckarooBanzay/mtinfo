@@ -4,11 +4,11 @@ const router = new VueRouter({
     path: "/",
     component: { template: `<start-page/>` }
   },{
-    path: "/nodes",
-    component: { template: `<node-list/>` }
+    path: "/items",
+    component: { template: `<item-list/>` }
   },{
-    path: "/nodes/:name",
-    component: { template: `<node-info v-bind:name="$route.params.name"/>` }
+    path: "/items/:name",
+    component: { template: `<item-info v-bind:name="$route.params.name"/>` }
   },{
     path: "/abms/:abm_key",
     component: { template: `<abm-info v-bind:abm_key="$route.params.abm_key"/>` }
