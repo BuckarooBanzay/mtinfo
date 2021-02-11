@@ -59,7 +59,7 @@ Vue.component("item-preview-normal", {
 				"width": (this.size/3) + "px",
 				"height": (this.size/3) + "px",
 				"background-size": "cover",
-				"image-rendering": "crisp-edges"
+				"image-rendering": ["crisp-edges", "-webkit-optimize-contrast"]
 			};
 		},
     frontStyle: function(){
