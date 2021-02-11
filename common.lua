@@ -12,7 +12,7 @@ function mtinfo.map_list(target, list, keys, filter)
 				if def[key] and def[key] ~= 0 then
 					-- only export fields that are populated
 					item[key] = def[key]
-					if key == "description" then
+					if key == "description" or key == "short_description" then
 						-- translate content
 						item[key] = minetest.get_translated_string("", def[key])
 					end

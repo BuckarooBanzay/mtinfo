@@ -51,9 +51,6 @@ Vue.component("node-preview-inventoryimage", {
 
 Vue.component("node-preview-normal", {
   props: ["node", "size"],
-	created: function(){
-		console.log("node-preview-normal", this.node);
-	},
   computed: {
 		common_attributes: function(){
 			return {

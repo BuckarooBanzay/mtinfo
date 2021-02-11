@@ -1,6 +1,8 @@
 
 mtinfo.stripimagetransforms = function(imgSrc){
-	if (imgSrc.indexOf("^")){
+	if (!imgSrc || typeof(imgSrc) != "string") {
+		return "textures/unknown_node.png";
+	} else if (imgSrc.indexOf("^")){
 		return imgSrc.split("^")[0];
 	} else {
 		return imgSrc;

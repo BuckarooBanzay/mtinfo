@@ -6,9 +6,7 @@ mtinfo = {
 
 print("[mtinfo] Exporting mtinfo to: " .. mtinfo.basepath)
 dofile(MP .. "/common.lua")
-dofile(MP .. "/nodes.lua")
 dofile(MP .. "/items.lua")
-dofile(MP .. "/tools.lua")
 dofile(MP .. "/abm.lua")
 dofile(MP .. "/lbm.lua")
 dofile(MP .. "/recipes.lua")
@@ -25,12 +23,10 @@ minetest.register_on_mods_loaded(function()
 		minetest.mkdir(mtinfo.basepath .. "/data")
 
 		-- export data
-		mtinfo.export_nodes()
 		mtinfo.export_lbms()
 		mtinfo.export_abms()
 		mtinfo.export_items()
 		mtinfo.export_recipes()
-		mtinfo.export_tools()
 
 		-- export textures
 		mtinfo.export_textures()

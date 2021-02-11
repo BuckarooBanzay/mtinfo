@@ -11,8 +11,8 @@ Vue.component("node-list", {
 	},
 	computed: {
 		list: function(){
-			return Object.keys(mtinfo.nodes).map(nodename => {
-				return mtinfo.nodes[nodename];
+			return Object.keys(mtinfo.items).map(nodename => {
+				return mtinfo.items[nodename];
 			});
 		}
 	},
