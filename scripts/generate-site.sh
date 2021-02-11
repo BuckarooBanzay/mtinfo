@@ -7,6 +7,6 @@ docker run --rm -i \
 	-v $(pwd)/output:/root/.minetest/worlds/world/mtinfo \
 	registry.gitlab.com/minetest/minetest/server:5.3.0
 
-test -f $(pwd)/output/index.html || exit -1
-test -f $(pwd)/output/data/items.json || exit -1
-test -d $(pwd)/output/textures || exit -1
+test -f $(pwd)/output/index.html || exit 1
+test -f $(pwd)/output/data/items.json || exit 1
+test -d $(pwd)/output/textures || exit 1
