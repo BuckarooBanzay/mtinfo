@@ -6,7 +6,13 @@ const router = new VueRouter({
   },{
     path: "/items",
     component: { template: `<item-list/>` }
-  },{
+	},{
+		path: "/mods",
+		component: { template: `<mod-list/>` }
+	},{
+		path: "/mods/:modname/items",
+		component: { template: `<item-list :modname="$route.params.modname"/>` }
+	},{
     path: "/items/:name",
     component: { template: `<item-info v-bind:name="$route.params.name"/>` }
   },{

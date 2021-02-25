@@ -20,7 +20,7 @@ Vue.component("item-info", {
         </div>
       </div>
 			<div class="row">
-				<div v-for="recipe in recipes">
+				<div v-for="recipe in recipes" class="col-md-2">
 					<recipe-info :recipe="recipe"/>
 				</div>
 			</div>
