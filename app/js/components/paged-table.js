@@ -38,7 +38,17 @@ Vue.component("paged-table", {
 			</tbody>
 			<tfoot>
 				<tr>
-					<slot v-bind:pages="pages" name="pager"></slot>
+					<td colspan="4">
+						<nav>
+							<ul class="pagination">
+								<li v-bind:class="{ 'page-item': true, 'active': page.active }" v-for="page in pages">
+									<router-link :to="(this.$route ? this.$route.path : '') + '?page=' + page.number" class="page-link">
+									{{ page.number }}
+									</router-link>
+								</li>
+							</ul>
+						</nav>
+					</td>
 				</tr>
 			</tfoot>
 		</table>

@@ -3,6 +3,7 @@ Vue.component("item-detail", {
 	props: ["item"],
 	created: function(){
 		let abms = [];
+		console.log("item-detail", this.item);
 
 		if (mtinfo.abm_nodenames[this.name]){
 			abms.push(mtinfo.abm_nodenames[this.name]);

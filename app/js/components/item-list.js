@@ -50,19 +50,6 @@ Vue.component("item-list", {
             </router-link>
           </td>
         </template>
-        <template v-slot:pager="{ pages }">
-         <td colspan="3">
-          <nav aria-label="Page navigation example">
-           <ul class="pagination">
-            <li v-bind:class="{ 'page-item': true, 'active': page.active }" v-for="page in pages">
-             <router-link :to="'/items?page=' + page.number" class="page-link">
-              {{ page.number }}
-             </router-link>
-            </li>
-           </ul>
-          </nav>
-        </td>
-       </template>
       </paged-table>
     </div>
   `
