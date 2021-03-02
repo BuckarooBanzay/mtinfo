@@ -20,7 +20,7 @@ Vue.component("stats", {
 			</tr>
 			<tr>
 				<td>Size of textures</td>
-				<td>{{ mtinfo.textures.size }} bytes</td>
+				<td>{{ mtinfo.textures.size | prettysize }}</td>
 			</tr>
 		</table>
 	`
