@@ -24,6 +24,12 @@ Vue.component("item-info", {
 					<recipe-info :recipe="recipe"/>
 				</div>
 			</div>
+			<div class="row">
+				<pre class="col-md-12">
+{{ JSON.stringify(item, null, '\t') }}
+{{ JSON.stringify(recipes, null, '\t') }}
+				</pre>
+			</div>
     </div>
   `
 });
