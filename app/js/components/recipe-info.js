@@ -5,7 +5,6 @@ Vue.component("recipe-info", {
   template: /*html*/`
 		<div>
 			<recipe-info-normal v-if="recipe.type == 'normal'" :recipe="recipe"/>
-			{{ JSON.stringify(recipe) }}
 		</div>
   `
 });
