@@ -61,6 +61,7 @@ Vue.component("item-preview-normal", {
 			let textures = [texture, texture, texture, texture, texture, texture];
 			if (typeof(this.item.tiles) == "string"){
 				// one texture for all sides
+				// TODO: parse and apply transformations
 				texture = mtinfo.stripimagetransforms(this.item.tiles);
 				for (let i=0; i<6; i++)
 					textures[i] = textures;
@@ -68,10 +69,10 @@ Vue.component("item-preview-normal", {
 			} else {
 				// +Y, -Y, +X, -X, +Z, -Z
 				for (let i=0; i<this.item.tiles.length; i++){
-					textures[i] = "textures/" + this.item.tiles[i];
+					textures[i] = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[i]);
 				}
 				for (let i=this.item.tiles.length-1; i<6; i++){
-					textures[i] = "textures/" + this.item.tiles[this.item.tiles.length-1];
+					textures[i] = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[this.item.tiles.length-1]);
 				}
       }
 			return textures;
@@ -107,6 +108,7 @@ Vue.component("item-preview-normal", {
 				width: this.size + "px",
 				height: this.size + "px",
 				"background-image": 'url("textures/default_stone.png")',
+				"backface-visibility": "hidden",
 				"image-rendering": ["crisp-edges", "-webkit-optimize-contrast"],
 				"background-size": "cover"
 			};
