@@ -56,67 +56,108 @@ Vue.component("item-preview-inventoryimage", {
 Vue.component("item-preview-normal", {
   props: ["item", "size"],
   computed: {
-		common_attributes: function(){
+		face_images: function(){
+			let texture = "pics/unknown_node.png";
+			let textures = [texture, texture, texture, texture, texture, texture];
+			if (typeof(this.item.tiles) == "string"){
+				// one texture for all sides
+				texture = mtinfo.stripimagetransforms(this.item.tiles);
+				for (let i=0; i<6; i++)
+					textures[i] = textures;
+
+			} else {
+				// +Y, -Y, +X, -X, +Z, -Z
+				for (let i=0; i<this.item.tiles.length; i++){
+					textures[i] = "textures/" + this.item.tiles[i];
+				}
+				for (let i=this.item.tiles.length-1; i<6; i++){
+					textures[i] = "textures/" + this.item.tiles[this.item.tiles.length-1];
+				}
+      }
+			return textures;
+		},
+		translateZ: function(){
+			return (this.size/2) + "px";
+		},
+		scene_style: function(){
 			return {
-				"transform-origin": "0 0",
-				"position": "absolute",
-				"width": (this.size/3) + "px",
-				"height": (this.size/3) + "px",
-				"background-size": "cover",
-				"image-rendering": ["crisp-edges", "-webkit-optimize-contrast"]
+				height: this.size + "px",
+				width: this.size + "px",
+				perspective: (this.size * 3) + "px"
 			};
 		},
-    frontStyle: function(){
-      let texture = "pics/unknown_node.png";
-      if (this.item.tiles){
-        if (this.item.tiles.length >= 3) {
-          // x+
-          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[2]);
-        } else {
-          // last tile
-          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[this.item.tiles.length-1]);
-        }
-      }
-
-      return Object.assign({}, this.common_attributes, {
-        "background-image": "url('" + texture + "')",
-      	"transform": `rotate(0deg) skewY(30deg) scaleX(0.864) translate(${this.size*0.1033}px, ${this.size*0.23}px)`
-      });
-    },
-    sideStyle: function(){
-      let texture = "pics/unknown_node.png";
-      if (this.item.tiles){
-        if (this.item.tiles.length >= 5) {
-          // z+
-          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[4]);
-        } else {
-          // last tile
-          texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[this.item.tiles.length-1]);
-        }
-      }
-
-			return Object.assign({}, this.common_attributes, {
-        "background-image": "url('" + texture + "')",
-        "transform": `rotate(-30deg) skewX(-30deg) translate(${this.size*0.433}px, ${this.size*0.5766}px) scaleY(0.864)`
-      });
-    },
-    topStyle: function(){
-      let texture = "pics/unknown_node.png";
-      if (this.item.tiles && this.item.tiles.length >= 1){
-        texture = "textures/" + mtinfo.stripimagetransforms(this.item.tiles[0]);
-      }
-
-			return Object.assign({}, this.common_attributes, {
-        "background-image": "url('" + texture + "')",
-      	"transform": `rotate(210deg) skew(-30deg) translate(-${this.size/3*2}px, -${this.size*0.2}px) scaleY(0.864)`
-      });
-    }
-  },
+		cube_style: function(){
+			return {
+				width: "100%",
+				height: "100%",
+				position: "relative",
+				"transform-style": "preserve-3d",
+				"transform": `translateZ(-${this.size * 3}px) rotateX(-30deg) rotateY(45deg)`
+				/*
+				"animation-name": "spinner",
+				"animation-timing-function": "linear",
+				"animation-iteration-count": "infinite",
+				"animation-duration": "6s"
+				*/
+			};
+		},
+		face_style: function(){
+			return {
+				position: "absolute",
+				width: this.size + "px",
+				height: this.size + "px",
+				"background-image": 'url("textures/default_stone.png")',
+				"image-rendering": ["crisp-edges", "-webkit-optimize-contrast"],
+				"background-size": "cover"
+			};
+		},
+		front_style: function(){
+			return Object.assign({}, this.face_style, {
+				transform: `rotateY(0deg) translateZ(${this.translateZ})`,
+				"background-image": `url(${this.face_images[2]})`
+			});
+		},
+		back_style: function(){
+			return Object.assign({}, this.face_style, {
+				transform: `rotateY(180deg) translateZ(${this.translateZ})`,
+				"background-image": `url(${this.face_images[3]})`
+			});
+		},
+		right_style: function(){
+			return Object.assign({}, this.face_style, {
+				transform: `rotateY(90deg) translateZ(${this.translateZ})`,
+				"background-image": `url(${this.face_images[4]})`
+			});
+		},
+		left_style: function(){
+			return Object.assign({}, this.face_style, {
+				transform: `rotateY(-90deg) translateZ(${this.translateZ})`,
+				"background-image": `url(${this.face_images[5]})`
+			});
+		},
+		top_style: function(){
+			return Object.assign({}, this.face_style, {
+				transform: `rotateX(90deg) translateZ(${this.translateZ})`,
+				"background-image": `url(${this.face_images[0]})`
+			});
+		},
+		bottom_style: function(){
+			return Object.assign({}, this.face_style, {
+				transform: `rotateX(-90deg) translateZ(${this.translateZ})`,
+				"background-image": `url(${this.face_images[1]})`
+			});
+		}
+	},
   template: /*html*/`
-    <div v-bind:style="{ overflow: 'hidden', width: size + 'px', height: size + 'px' }">
-			<div v-bind:style="frontStyle"></div>
-			<div v-bind:style="sideStyle"></div>
-			<div v-bind:style="topStyle"></div>
-    </div>
+		<div v-bind:style="scene_style">
+	    <div v-bind:style="cube_style">
+				<div v-bind:style="front_style"></div>
+				<div v-bind:style="back_style"></div>
+				<div v-bind:style="right_style"></div>
+				<div v-bind:style="left_style"></div>
+				<div v-bind:style="top_style"></div>
+				<div v-bind:style="bottom_style"></div>
+	    </div>
+		</div>
   `
 });
