@@ -15,7 +15,8 @@ dofile(MP .. "/textures.lua")
 minetest.register_on_mods_loaded(function()
 
 	-- workaround for empty translations, defer a globalstep until everything is initialized
-	minetest.after(0, function()
+	-- deferred by 1 second until technic.recipes is populated
+	minetest.after(1, function()
 		local start = minetest.get_us_time()
 
 		-- copy static assets

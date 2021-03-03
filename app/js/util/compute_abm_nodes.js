@@ -17,7 +17,7 @@ function register_abm_label(abm, index){
 
 	} else {
 		// try another index
-		register_abm_label(abm, index || 1);
+		register_abm_label(abm, (index || 0) + 1);
 	}
 }
 

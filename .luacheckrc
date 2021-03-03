@@ -12,6 +12,9 @@ read_globals = {
 	-- Minetest
 	"minetest",
 	"vector", "ItemStack",
-	"dump"
+	"dump",
+
+	-- optional deps
+	"technic"
 
 }
