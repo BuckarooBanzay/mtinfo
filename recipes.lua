@@ -31,23 +31,25 @@ function mtinfo.export_recipes()
 		end
 	end
 
-	for recipe_type, entry in pairs(technic.recipes) do
-		if entry.recipes then
-			for name, recipe in pairs(entry.recipes) do
-				local existing_recipes = data[name]
-				if not existing_recipes then
-					existing_recipes = {}
+	if minetest.get_modpath("technic") then
+		for recipe_type, entry in pairs(technic.recipes) do
+			if entry.recipes then
+				for name, recipe in pairs(entry.recipes) do
+					local existing_recipes = data[name]
+					if not existing_recipes then
+						existing_recipes = {}
+					end
+
+					table.insert(existing_recipes, {
+						type = recipe_type,
+						method = recipe_type,
+						items = recipe.input,
+						output = recipe.output,
+						time = recipe.time
+					})
+
+					data[name] = existing_recipes
 				end
-
-				table.insert(existing_recipes, {
-					type = recipe_type,
-					method = recipe_type,
-					items = recipe.input,
-					output = recipe.output,
-					time = recipe.time
-				})
-
-				data[name] = existing_recipes
 			end
 		end
 	end
