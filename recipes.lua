@@ -34,8 +34,11 @@ function mtinfo.export_recipes()
 	if minetest.get_modpath("technic") then
 		for recipe_type, entry in pairs(technic.recipes) do
 			if entry.recipes then
-				for name, recipe in pairs(entry.recipes) do
-					local existing_recipes = data[name]
+				for _, recipe in pairs(entry.recipes) do
+					local result_stack = ItemStack(recipe.output)
+					local outputname = result_stack:get_name()
+
+					local existing_recipes = data[outputname]
 					if not existing_recipes then
 						existing_recipes = {}
 					end
@@ -48,7 +51,7 @@ function mtinfo.export_recipes()
 						time = recipe.time
 					})
 
-					data[name] = existing_recipes
+					data[outputname] = existing_recipes
 				end
 			end
 		end

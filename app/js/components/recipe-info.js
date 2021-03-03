@@ -1,22 +1,42 @@
 
+/*
+<i class="fa fa-temperature-high"></i>
+<i class="fa fa-temperature-low"></i>
+<i class="fa fa-layer-group"></i>
+<i class="fa fa-th"></i>
+<i class="fa fa-compress-arrows-alt"></i>
+*/
 
 Vue.component("recipe-info", {
   props: ["recipe"],
   template: /*html*/`
-		<div class="card">
-			<div class="card-header">
-				{{ recipe.type }}
-			</div>
-			<div class="card-body">
-				<recipe-info-normal v-if="recipe.type == 'normal'" :recipe="recipe"/>
-				<recipe-info-cooking v-if="recipe.type == 'cooking'" :recipe="recipe"/>
-				Output: <b>{{ recipe.output }}</b>
-			</div>
+		<div>
+			<recipe-info-normal v-if="recipe.type == 'normal'" :recipe="recipe"/>
+			<recipe-info-smelting v-if="recipe.type == 'cooking'" :recipe="recipe"/>
+			<recipe-info-alloy v-if="recipe.type == 'alloy'" :recipe="recipe"/>
+			<recipe-info-freezing v-if="recipe.type == 'freezing'" :recipe="recipe"/>
+			<recipe-info-compressing v-if="recipe.type == 'compressing'" :recipe="recipe"/>
+			<recipe-info-separating v-if="recipe.type == 'separating'" :recipe="recipe"/>
+			<recipe-info-grinding v-if="recipe.type == 'grinding'" :recipe="recipe"/>
+			<div v-else></div>
 		</div>
   `
 });
 
-Vue.component("recipe-info-cooking", {
+Vue.component("recipe-base-layout", {
+	template: /*html*/`
+		<div class="card">
+			<div class="card-header">
+				<slot name="header"></slot>
+			</div>
+			<div class="card-body">
+				<slot name="body"></slot>
+			</div>
+		</div>
+	`
+});
+
+Vue.component("recipe-info-smelting", {
 	props: ["recipe"],
 	computed: {
 		item: function(){
@@ -24,10 +44,79 @@ Vue.component("recipe-info-cooking", {
 		}
 	},
 	template: /*html*/`
-		<div>
-			<item-preview :item="item" size="64"/>
-			Cook-time: <b>{{ recipe.width }}</b>
-		</div>
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-temperature-high"></i> Smelting
+			</template>
+			<template v-slot:body>
+				<item-preview :item="item" size="64"/>
+			</template>
+		</recipe-base-layout>
+	`
+});
+
+Vue.component("recipe-info-separating", {
+	props: ["recipe"],
+	template: /*html*/`
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-arrows-alt-h"></i> Separating
+			</template>
+			<template v-slot:body>
+			</template>
+		</recipe-base-layout>
+	`
+});
+
+Vue.component("recipe-info-freezing", {
+	props: ["recipe"],
+	template: /*html*/`
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-temperature-low"></i> Freezing
+			</template>
+			<template v-slot:body>
+			</template>
+		</recipe-base-layout>
+	`
+});
+
+Vue.component("recipe-info-grinding", {
+	props: ["recipe"],
+	template: /*html*/`
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-question"></i> Grinding
+			</template>
+			<template v-slot:body>
+			</template>
+		</recipe-base-layout>
+	`
+});
+
+Vue.component("recipe-info-compress", {
+	props: ["recipe"],
+	template: /*html*/`
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-compress-arrows-alt"></i> Compressing
+			</template>
+			<template v-slot:body>
+			</template>
+		</recipe-base-layout>
+	`
+});
+
+Vue.component("recipe-info-alloy", {
+	props: ["recipe"],
+	template: /*html*/`
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-layer-group"></i> Alloying
+			</template>
+			<template v-slot:body>
+			</template>
+		</recipe-base-layout>
 	`
 });
 
@@ -69,22 +158,29 @@ Vue.component("recipe-info-normal", {
 		}
 	},
   template: /*html*/`
-		<table class="inventory-table">
-			<tr>
-				<td><item-preview v-if="table[0][0]" :item="mtinfo.items[table[0][0]]" size="64"/></td>
-				<td><item-preview v-if="table[0][1]" :item="mtinfo.items[table[0][1]]" size="64"/></td>
-				<td><item-preview v-if="table[0][2]" :item="mtinfo.items[table[0][2]]" size="64"/></td>
-			</tr>
-			<tr>
-				<td><item-preview v-if="table[1][0]" :item="mtinfo.items[table[1][0]]" size="64"/></td>
-				<td><item-preview v-if="table[1][1]" :item="mtinfo.items[table[1][1]]" size="64"/></td>
-				<td><item-preview v-if="table[1][2]" :item="mtinfo.items[table[1][2]]" size="64"/></td>
-			</tr>
-			<tr>
-				<td><item-preview v-if="table[2][0]" :item="mtinfo.items[table[2][0]]" size="64"/></td>
-				<td><item-preview v-if="table[2][1]" :item="mtinfo.items[table[2][1]]" size="64"/></td>
-				<td><item-preview v-if="table[2][2]" :item="mtinfo.items[table[2][2]]" size="64"/></td>
-			</tr>
-		</table>
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-th"></i> Crafting
+			</template>
+			<template v-slot:body>
+				<table class="inventory-table">
+					<tr>
+						<td><item-preview v-if="table[0][0]" :item="mtinfo.items[table[0][0]]" size="64"/></td>
+						<td><item-preview v-if="table[0][1]" :item="mtinfo.items[table[0][1]]" size="64"/></td>
+						<td><item-preview v-if="table[0][2]" :item="mtinfo.items[table[0][2]]" size="64"/></td>
+					</tr>
+					<tr>
+						<td><item-preview v-if="table[1][0]" :item="mtinfo.items[table[1][0]]" size="64"/></td>
+						<td><item-preview v-if="table[1][1]" :item="mtinfo.items[table[1][1]]" size="64"/></td>
+						<td><item-preview v-if="table[1][2]" :item="mtinfo.items[table[1][2]]" size="64"/></td>
+					</tr>
+					<tr>
+						<td><item-preview v-if="table[2][0]" :item="mtinfo.items[table[2][0]]" size="64"/></td>
+						<td><item-preview v-if="table[2][1]" :item="mtinfo.items[table[2][1]]" size="64"/></td>
+						<td><item-preview v-if="table[2][2]" :item="mtinfo.items[table[2][2]]" size="64"/></td>
+					</tr>
+				</table>
+			</template>
+		</recipe-base-layout>
   `
 });
