@@ -3,12 +3,33 @@
 Vue.component("recipe-info", {
   props: ["recipe"],
   template: /*html*/`
-		<div>
-			<recipe-info-normal v-if="recipe.type == 'normal'" :recipe="recipe"/>
+		<div class="card">
+			<div class="card-header">
+				{{ recipe.type }}
+			</div>
+			<div class="card-body">
+				<recipe-info-normal v-if="recipe.type == 'normal'" :recipe="recipe"/>
+				<recipe-info-cooking v-if="recipe.type == 'cooking'" :recipe="recipe"/>
+				Output: <b>{{ recipe.output }}</b>
+			</div>
 		</div>
   `
 });
 
+Vue.component("recipe-info-cooking", {
+	props: ["recipe"],
+	computed: {
+		item: function(){
+			return mtinfo.items[this.recipe.items[0]];
+		}
+	},
+	template: /*html*/`
+		<div>
+			<item-preview :item="item" size="64"/>
+			Cook-time: <b>{{ recipe.width }}</b>
+		</div>
+	`
+});
 
 Vue.component("recipe-info-normal", {
   props: ["recipe"],

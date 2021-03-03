@@ -43,7 +43,7 @@ Vue.component("item-preview-inventoryimage", {
 	computed: {
 		imgsrc: function(){
 			if (this.item.inventory_image)
-				return `textures/${this.item.inventory_image}`;
+				return `textures/${mtinfo.stripimagetransforms(this.item.inventory_image)}`;
 			else
 				return "pics/unknown_node.png";
 		}
