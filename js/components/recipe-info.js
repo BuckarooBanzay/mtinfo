@@ -1,12 +1,4 @@
 
-/*
-<i class="fa fa-temperature-high"></i>
-<i class="fa fa-temperature-low"></i>
-<i class="fa fa-layer-group"></i>
-<i class="fa fa-th"></i>
-<i class="fa fa-compress-arrows-alt"></i>
-*/
-
 Vue.component("recipe-info", {
   props: ["recipe"],
   template: /*html*/`
@@ -18,6 +10,7 @@ Vue.component("recipe-info", {
 			<recipe-info-compressing v-if="recipe.type == 'compressing'" :recipe="recipe"/>
 			<recipe-info-separating v-if="recipe.type == 'separating'" :recipe="recipe"/>
 			<recipe-info-grinding v-if="recipe.type == 'grinding'" :recipe="recipe"/>
+			<recipe-info-extracting v-if="recipe.type == 'extracting'" :recipe="recipe"/>
 			<div v-else></div>
 		</div>
   `
@@ -81,20 +74,39 @@ Vue.component("recipe-info-freezing", {
 	`
 });
 
-Vue.component("recipe-info-grinding", {
+Vue.component("recipe-info-extracting", {
 	props: ["recipe"],
 	template: /*html*/`
 		<recipe-base-layout>
 			<template v-slot:header>
-				<i class="fa fa-question"></i> Grinding
+				<i class="fa fa-external-link-alt"></i> Extracting
 			</template>
 			<template v-slot:body>
+				<div v-for="name in Object.keys(recipe.items)">
+					<item-preview :item="mtinfo.items[name]" size="64"/>
+				</div>
 			</template>
 		</recipe-base-layout>
 	`
 });
 
-Vue.component("recipe-info-compress", {
+Vue.component("recipe-info-grinding", {
+	props: ["recipe"],
+	template: /*html*/`
+		<recipe-base-layout>
+			<template v-slot:header>
+				<i class="fa fa-expand-arrows-alt"></i> Grinding
+			</template>
+			<template v-slot:body>
+				<div v-for="name in Object.keys(recipe.items)">
+					<item-preview :item="mtinfo.items[name]" size="64"/>
+				</div>
+			</template>
+		</recipe-base-layout>
+	`
+});
+
+Vue.component("recipe-info-compressing", {
 	props: ["recipe"],
 	template: /*html*/`
 		<recipe-base-layout>
@@ -102,6 +114,9 @@ Vue.component("recipe-info-compress", {
 				<i class="fa fa-compress-arrows-alt"></i> Compressing
 			</template>
 			<template v-slot:body>
+				<div v-for="name in Object.keys(recipe.items)">
+					<item-preview :item="mtinfo.items[name]" size="64"/>
+				</div>
 			</template>
 		</recipe-base-layout>
 	`
@@ -115,6 +130,9 @@ Vue.component("recipe-info-alloy", {
 				<i class="fa fa-layer-group"></i> Alloying
 			</template>
 			<template v-slot:body>
+				<div v-for="name in Object.keys(recipe.items)">
+					<item-preview :item="mtinfo.items[name]" size="64"/>
+				</div>
 			</template>
 		</recipe-base-layout>
 	`

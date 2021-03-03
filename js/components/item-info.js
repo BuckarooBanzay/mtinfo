@@ -3,9 +3,11 @@ Vue.component("item-info", {
   props: ["name"],
 	computed: {
 		item: function(){
+			console.log("item", mtinfo.items[this.name]);
 			return mtinfo.items[this.name];
 		},
 		recipes: function(){
+			console.log("recipes", mtinfo.recipes[this.name]);
 			return mtinfo.recipes[this.name];
 		}
 	},
@@ -48,13 +50,6 @@ Vue.component("item-info", {
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<pre class="col-md-12">
-Debug
-{{ JSON.stringify(item, null, '\t') }}
-{{ JSON.stringify(recipes, null, '\t') }}
-				</pre>
 			</div>
     </div>
   `

@@ -3,8 +3,6 @@ Vue.component("item-detail", {
 	props: ["item"],
 	created: function(){
 		let abms = [];
-		console.log("item-detail", this.item);
-
 		if (mtinfo.abm_nodenames[this.name]){
 			abms.push(mtinfo.abm_nodenames[this.name]);
 		}
@@ -38,6 +36,7 @@ Vue.component("item-detail", {
 			<p>Stack-max: <span class="badge badge-primary">{{ item.stack_max }}</span></p>
 			<p v-if="item.light_source">Light-source: <span class="badge badge-primary">{{ item.light_source }}</span></p>
 			<p v-if="item.damage_per_second">Damage per second: <span class="badge badge-warning">{{ item.damage_per_second }}</span></p>
+			<p>Mod: <router-link :to="'/mods/' + item.mod_origin + '/items'">{{ item.mod_origin}}</router-link></p>
 			<p>Groups</p>
 			<ul v-if="item.groups">
 				<li v-for="group in Object.keys(item.groups)">
