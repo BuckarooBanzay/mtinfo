@@ -9,9 +9,14 @@ Vue.component("nav-bar", {
             <i class="fa fa-home"></i> Start
           </router-link>
         </li>
-        <li class="nav-item">
+				<li class="nav-item">
           <router-link to="/mods" class="nav-link">
-            <i class="fa fa-question"></i> Mods
+            <i class="fa fa-cubes"></i> Mods
+          </router-link>
+        </li>
+				<li class="nav-item">
+          <router-link to="/search" class="nav-link">
+            <i class="fa fa-search"></i> Search
           </router-link>
         </li>
       </ul>

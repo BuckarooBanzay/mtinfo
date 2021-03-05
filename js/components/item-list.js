@@ -1,5 +1,5 @@
 Vue.component("item-list", {
-	props: ["modname"],
+	props: ["modname", "search"],
 	data: function(){
 		return {
 			page: +this.$route.query.page || 1
@@ -16,7 +16,11 @@ Vue.component("item-list", {
 				.filter(nodename => {
 					const parts = nodename.split(":");
 					if (this.modname){
+						// filter by modname
 						return this.modname === parts[0];
+					} else if (this.search){
+						// filter by nodename part
+						return nodename.includes(this.search);
 					}
 
 					return true;
@@ -24,33 +28,32 @@ Vue.component("item-list", {
 				.map(nodename => {
 					return mtinfo.items[nodename];
 				});
-		}
-	},
-  template: /*html*/`
-    <div>
-      <h4>Item list</h4>
-      <paged-table v-bind:list="list" v-bind:page="page">
-        <template v-slot:header>
-          <th>Mod</th>
+			}
+		},
+		template: /*html*/`
+		<div>
+			<paged-table v-bind:list="list" v-bind:page="page">
+				<template v-slot:header>
+					<th>Mod</th>
 					<th>Type</th>
-          <th>Image</th>
-          <th>Nodename</th>
-        </template>
-        <template v-slot:row="{ item }">
-          <td>{{ item.name.substring(0, item.name.indexOf(":")) }}</td>
+					<th>Image</th>
+					<th>Nodename</th>
+				</template>
+				<template v-slot:row="{ item }">
+					<td>{{ item.name.substring(0, item.name.indexOf(":")) }}</td>
 					<td>
 						<span class="badge badge-secondary">{{ item.type }}</span>
 					</td>
-          <td>
-            <item-preview :item="item" size="32"/>
-          </td>
-          <td>
-            <router-link :to="'/items/' + item.name">
-              {{ item.name }}
-            </router-link>
-          </td>
-        </template>
-      </paged-table>
-    </div>
-  `
-});
+					<td>
+						<item-preview :item="item" size="32"/>
+					</td>
+					<td>
+						<router-link :to="'/items/' + item.name">
+						{{ item.name }}
+						</router-link>
+					</td>
+				</template>
+			</paged-table>
+		</div>
+		`
+	});
