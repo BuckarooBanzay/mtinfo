@@ -9,6 +9,23 @@ mtinfo.stripimagetransforms = function(imgSrc){
 	}
 };
 
+mtinfo.parseimagetransforms = function(str){
+	if (!str || typeof(str) != "string")
+		return ["textures/unknown_node.png"];
+
+	let parts = str.split("^");
+	return parts
+	.map(function(part){
+		if (part && part[0] == "[")
+			return;
+		// prefix
+		return "textures/" + part;
+	})
+	.filter(function(part){
+		return !!part;
+	});
+};
+
 mtinfo.imageresolver = function(node){
 	var imgSrc = "textures/unknown_node.png";
 	if (node.inventory_image){

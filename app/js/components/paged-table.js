@@ -32,7 +32,7 @@ Vue.component("paged-table", {
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="item in items">
+				<tr v-for="item in items" v-bind:key="item.name">
 					<slot v-bind:item="item" name="row"></slot>
 				</tr>
 			</tbody>
