@@ -103,50 +103,30 @@ Vue.component("item-preview-normal", {
 			// +Y, -Y, +X, -X, +Z, -Z
 			let tiles = this.item.tiles;
 
-			// TODO: optimize!
-			if (tiles.length == 1){
-				this.top.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.bottom.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.front.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.back.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.right.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.left.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-			} else if (tiles.length == 2){
-				this.top.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.bottom.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.front.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.back.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.right.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.left.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-			} else if (tiles.length == 3){
-				this.top.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.bottom.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.front.push("textures/" + mtinfo.stripimagetransforms(tiles[2]));
-				this.back.push("textures/" + mtinfo.stripimagetransforms(tiles[2]));
-				this.right.push("textures/" + mtinfo.stripimagetransforms(tiles[2]));
-				this.left.push("textures/" + mtinfo.stripimagetransforms(tiles[2]));
-			} else if (tiles.length == 4){
-				this.top.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.bottom.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.front.push("textures/" + mtinfo.stripimagetransforms(tiles[2]));
-				this.back.push("textures/" + mtinfo.stripimagetransforms(tiles[3]));
-				this.right.push("textures/" + mtinfo.stripimagetransforms(tiles[3]));
-				this.left.push("textures/" + mtinfo.stripimagetransforms(tiles[3]));
-			} else if (tiles.length == 5){
-				this.top.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.bottom.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.front.push("textures/" + mtinfo.stripimagetransforms(tiles[2]));
-				this.back.push("textures/" + mtinfo.stripimagetransforms(tiles[3]));
-				this.right.push("textures/" + mtinfo.stripimagetransforms(tiles[4]));
-				this.left.push("textures/" + mtinfo.stripimagetransforms(tiles[4]));
-			} else if (tiles.length == 6){
-				this.top.push("textures/" + mtinfo.stripimagetransforms(tiles[0]));
-				this.bottom.push("textures/" + mtinfo.stripimagetransforms(tiles[1]));
-				this.front.push("textures/" + mtinfo.stripimagetransforms(tiles[2]));
-				this.back.push("textures/" + mtinfo.stripimagetransforms(tiles[3]));
-				this.right.push("textures/" + mtinfo.stripimagetransforms(tiles[4]));
-				this.left.push("textures/" + mtinfo.stripimagetransforms(tiles[5]));
-			}
+			if (tiles.length >= 1)
+				this.top = mtinfo.parseimagetransforms(tiles[0]);
+			if (tiles.length >= 2)
+				this.bottom = mtinfo.parseimagetransforms(tiles[1]);
+			if (tiles.length >= 3)
+				this.front = mtinfo.parseimagetransforms(tiles[2]);
+			if (tiles.length >= 4)
+				this.back = mtinfo.parseimagetransforms(tiles[3]);
+			if (tiles.length >= 5)
+				this.right = mtinfo.parseimagetransforms(tiles[4]);
+			if (tiles.length >= 6)
+				this.left = mtinfo.parseimagetransforms(tiles[5]);
+
+			// populate missing tiles
+			if (this.bottom.length == 0)
+				this.bottom = this.top;
+			if (this.front.length == 0)
+				this.front = this.bottom;
+			if (this.back.length == 0)
+				this.back = this.front;
+			if (this.right.length == 0)
+				this.right = this.back;
+			if (this.left.length == 0)
+				this.left = this.right;
 		}
 	},
   computed: {
