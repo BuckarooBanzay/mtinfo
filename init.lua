@@ -1,7 +1,12 @@
 local MP = minetest.get_modpath("mtinfo")
 
 mtinfo = {
-	basepath = minetest.get_worldpath() .. "/mtinfo"
+	basepath = minetest.get_worldpath() .. "/mtinfo",
+	settings = {
+		startpage_mod = minetest.settings:get("mtinfo.startpage_mod"),
+		screenshot_mod = minetest.settings:get("mtinfo.screenshot_mod"),
+		screenshot_name = minetest.settings:get("mtinf.screenshot_name")
+	}
 }
 
 print("[mtinfo] Exporting mtinfo to: " .. mtinfo.basepath)
