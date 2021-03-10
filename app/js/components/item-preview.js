@@ -87,46 +87,61 @@ Vue.component("item-preview-normal", {
 		};
 	},
 	created: function() {
-		let texture = "pics/unknown_node.png";
-		if (typeof(this.item.tiles) == "string"){
-			// one texture for all sides
-			// TODO: parse and apply transformations
-			texture = mtinfo.stripimagetransforms(this.item.tiles);
-			this.front.push(texture);
-			this.back.push(texture);
-			this.left.push(texture);
-			this.right.push(texture);
-			this.top.push(texture);
-			this.bottom.push(texture);
+		this.prepareTextures();
+	},
+	watch: {
+		"item": "prepareTextures"
+	},
+	methods: {
+		prepareTextures: function() {
+			this.front = [];
+			this.back = [];
+			this.left = [];
+			this.right = [];
+			this.top = [];
+			this.bottom = [];
 
-		} else {
-			// +Y, -Y, +X, -X, +Z, -Z
-			let tiles = this.item.tiles;
+			let texture = "pics/unknown_node.png";
+			if (typeof(this.item.tiles) == "string"){
+				// one texture for all sides
+				// TODO: parse and apply transformations
+				texture = mtinfo.stripimagetransforms(this.item.tiles);
+				this.front.push(texture);
+				this.back.push(texture);
+				this.left.push(texture);
+				this.right.push(texture);
+				this.top.push(texture);
+				this.bottom.push(texture);
 
-			if (tiles.length >= 1)
-				this.top = mtinfo.parseimagetransforms(tiles[0]);
-			if (tiles.length >= 2)
-				this.bottom = mtinfo.parseimagetransforms(tiles[1]);
-			if (tiles.length >= 3)
-				this.front = mtinfo.parseimagetransforms(tiles[2]);
-			if (tiles.length >= 4)
-				this.back = mtinfo.parseimagetransforms(tiles[3]);
-			if (tiles.length >= 5)
-				this.right = mtinfo.parseimagetransforms(tiles[4]);
-			if (tiles.length >= 6)
-				this.left = mtinfo.parseimagetransforms(tiles[5]);
+			} else {
+				// +Y, -Y, +X, -X, +Z, -Z
+				let tiles = this.item.tiles;
 
-			// populate missing tiles
-			if (this.bottom.length == 0)
-				this.bottom = this.top;
-			if (this.front.length == 0)
-				this.front = this.bottom;
-			if (this.back.length == 0)
-				this.back = this.front;
-			if (this.right.length == 0)
-				this.right = this.back;
-			if (this.left.length == 0)
-				this.left = this.right;
+				if (tiles.length >= 1)
+					this.top = mtinfo.parseimagetransforms(tiles[0]);
+				if (tiles.length >= 2)
+					this.bottom = mtinfo.parseimagetransforms(tiles[1]);
+				if (tiles.length >= 3)
+					this.front = mtinfo.parseimagetransforms(tiles[2]);
+				if (tiles.length >= 4)
+					this.back = mtinfo.parseimagetransforms(tiles[3]);
+				if (tiles.length >= 5)
+					this.right = mtinfo.parseimagetransforms(tiles[4]);
+				if (tiles.length >= 6)
+					this.left = mtinfo.parseimagetransforms(tiles[5]);
+
+				// populate missing tiles
+				if (this.bottom.length == 0)
+					this.bottom = this.top;
+				if (this.front.length == 0)
+					this.front = this.bottom;
+				if (this.back.length == 0)
+					this.back = this.front;
+				if (this.right.length == 0)
+					this.right = this.back;
+				if (this.left.length == 0)
+					this.left = this.right;
+			}
 		}
 	},
   computed: {
