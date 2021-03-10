@@ -39,7 +39,7 @@ Vue.component("recipe-info-smelting", {
 	template: /*html*/`
 		<recipe-base-layout>
 			<template v-slot:header>
-				<i class="fa fa-temperature-high"></i> Smelting
+				<i class="fa fa-temperature-high"></i> Smelting/Cooking
 			</template>
 			<template v-slot:body>
 				<item-preview :item="item" size="64"/>
@@ -152,27 +152,21 @@ Vue.component("recipe-info-normal", {
 				// "shapeless" recipe
 				table[0][0] = this.recipe.items[0];
 				table[0][1] = this.recipe.items[1];
-			}
-
-			if (this.recipe.width == 1) {
-				table[0][0] = this.recipe.items[0];
-			}
-
-			if (this.recipe.width == 3){
-				let row = -1;
+			} else {
+				// shaped recipe
+				let row = 0;
 				let col = 0;
 				for (let i=0; i<this.recipe.items.length; i++){
-					if (i % 3 == 0){
+					table[row][col] = this.recipe.items[i];
+					col++;
+					if (col >= (this.recipe.width || 3)){
 						row++;
 						col = 0;
 					}
-					table[row][col] = this.recipe.items[i];
-
-					col++;
 				}
 			}
 
-			return table;
+		return table;
 		}
 	},
   template: /*html*/`

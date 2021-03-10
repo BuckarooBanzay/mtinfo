@@ -7,6 +7,9 @@ Vue.component("item-preview", {
 	},
 	computed: {
 		previewType: function(){
+			if (!this.item){
+				return "unknown";
+			}
 			if (this.item.inventory_image){
 				return "invimage";
 			}
@@ -18,12 +21,18 @@ Vue.component("item-preview", {
 				case "plantlike": return "invimage";
 				default: return "invimage";
 			}
+		},
+		isGroup: function(){
+			return this.item && /^group:/.test(this.item.name);
 		}
 	},
   template: /*html*/`
 	<router-link :to="'/items/' + item.name" :title="item.name">
+		<div v-if="isGroup || !item">
+			?
+		</div>
 		<item-preview-inventoryimage
-			v-if="previewType == 'invimage'"
+			v-else-if="previewType == 'invimage'"
 			:item="item"
 			:size="size">
 		</item-preview-inventoryimage>
