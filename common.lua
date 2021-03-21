@@ -29,7 +29,7 @@ function mtinfo.copyfile(src, target)
 	infile:close()
 
 	if not instr then
-		return
+		return 0
 	end
 
 	local outfile, err = io.open(target, "w")
