@@ -19,6 +19,16 @@ Vue.component("nav-bar", {
             <i class="fa fa-search"></i> Search
           </router-link>
         </li>
+				<li class="nav-item">
+          <router-link to="/moreblocks" class="nav-link">
+            <i class="fa fa-th-large"></i> Moreblocks
+          </router-link>
+        </li>
+				<li class="nav-item">
+          <router-link to="/cnc" class="nav-link">
+            <i class="fa fa-th"></i> Technic CNC
+          </router-link>
+        </li>
       </ul>
     </div>
 </nav>
