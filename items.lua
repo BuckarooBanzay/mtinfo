@@ -34,6 +34,7 @@ local item_mapped_keys = {
 function mtinfo.export_items()
 	local data = {}
 	local has_moreblocks = minetest.get_modpath("moreblocks")
+	local has_technic_cnc = minetest.get_modpath("technic_cnc")
 
 	mtinfo.map_list(data, minetest.registered_items, item_mapped_keys, function(def)
 		if def.groups and def.groups.not_in_creative_inventory then
@@ -43,7 +44,12 @@ function mtinfo.export_items()
 		end
 	end, function(name, item)
 		if has_moreblocks and circular_saw.known_nodes[name] then
+			-- moreblocks enabled
 			item.circular_saw = true
+		end
+		if has_technic_cnc and minetest.registered_items[name .. "_technic_cnc_slope"] then
+			-- partial or full cnc support
+			item.cnc = true
 		end
 	end)
 	mtinfo.export_json(mtinfo.basepath.."/data/items.js", data, "mtinfo.items")
