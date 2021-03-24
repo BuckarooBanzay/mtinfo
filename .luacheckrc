@@ -15,6 +15,6 @@ read_globals = {
 	"dump",
 
 	-- optional deps
-	"technic"
+	"technic", "circular_saw"
 
 }

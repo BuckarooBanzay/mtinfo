@@ -1,9 +1,12 @@
 
-function mtinfo.map_list(target, list, keys, filter)
+function mtinfo.map_list(target, list, keys, filter, enhancefn)
 	filter = filter or function()
 		-- show all
 		return true
 	end
+
+	-- no-op
+	enhancefn = enhancefn or function() end
 
 	for name, def in pairs(list) do
 		if filter(def) then
@@ -18,6 +21,7 @@ function mtinfo.map_list(target, list, keys, filter)
 					end
 				end
 			end
+			enhancefn(name, item)
 			target[name] = item
 		end
 	end

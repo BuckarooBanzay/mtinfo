@@ -32,14 +32,19 @@ local item_mapped_keys = {
 }
 
 function mtinfo.export_items()
-  local data = {}
+	local data = {}
+	local has_moreblocks = minetest.get_modpath("moreblocks")
 
-  mtinfo.map_list(data, minetest.registered_items, item_mapped_keys, function(def)
+	mtinfo.map_list(data, minetest.registered_items, item_mapped_keys, function(def)
 		if def.groups and def.groups.not_in_creative_inventory then
 			return false
 		else
 			return true
 		end
+	end, function(name, item)
+		if has_moreblocks and circular_saw.known_nodes[name] then
+			item.circular_saw = true
+		end
 	end)
-  mtinfo.export_json(mtinfo.basepath.."/data/items.js", data, "mtinfo.items")
+	mtinfo.export_json(mtinfo.basepath.."/data/items.js", data, "mtinfo.items")
 end

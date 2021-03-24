@@ -33,6 +33,7 @@ Vue.component("item-detail", {
 			<span v-if="item.pointable" class="badge badge-success">Pointable</span>
 			<span v-if="item.airlike" class="badge badge-success">Airlike</span>
 			<span v-if="item.walkable" class="badge badge-success">Walkable</span>
+			<span v-if="item.circular_saw" class="badge badge-primary">Circular-saw compatible</span>
 			<p>Stack-max: <span class="badge badge-primary">{{ item.stack_max }}</span></p>
 			<p v-if="item.light_source">Light-source: <span class="badge badge-primary">{{ item.light_source }}</span></p>
 			<p v-if="item.damage_per_second">Damage per second: <span class="badge badge-warning">{{ item.damage_per_second }}</span></p>
