@@ -7,6 +7,9 @@ const router = new VueRouter({
 		path: "/items",
 		component: { template: `<item-list/>` }
 	}, {
+		path: "/abms",
+		component: { template: `<abm-list/>` }
+	}, {
 		path: "/mods",
 		component: { template: `<mod-list/>` }
 	}, {

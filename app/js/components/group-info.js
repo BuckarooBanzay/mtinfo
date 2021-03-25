@@ -22,7 +22,7 @@ Vue.component("group-info", {
     <div>
         <h3>
             Group info
-            <small>{{ name }}</small>
+            <small class="text-muted">{{ name }}</small>
         </h3>
         <paged-table v-bind:list="list" v-bind:page="page">
             <template v-slot:header>
