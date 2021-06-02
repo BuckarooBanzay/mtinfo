@@ -27,6 +27,11 @@ Generates a static info-page about the world, stats include:
 * Start the world
 * Open the generated `index.html` in the world-folder `mtinfo` with a web-browser
 
+## Settings
+
+* **mtinfo.enabled** Enables the info-page generation (default `false`)
+* **mtinfo.autoshutdown** Shuts down after info-page generation (default `false`)
+
 # Contributors
 
 * https://github.com/BuckarooBanzay

@@ -1,5 +1,13 @@
 local MP = minetest.get_modpath("mtinfo")
 
+local mtinfo_enabled = minetest.settings:get_bool("mtinfo.enabled")
+local autoshutdown = minetest.settings:get_bool("mtinfo.autoshutdown")
+
+if not mtinfo_enabled then
+	-- skip everything
+	return
+end
+
 mtinfo = {
 	basepath = minetest.get_worldpath() .. "/mtinfo",
 	settings = {
@@ -46,7 +54,7 @@ minetest.register_on_mods_loaded(function()
 		local diff = minetest.get_us_time() - start
 		print("[mtinfo] export took " .. diff .. " us")
 
-		if minetest.settings:get_bool("mtinfo.autoshutdown") then
+		if autoshutdown then
 			minetest.request_shutdown("autoshutdown")
 		end
 	end)
