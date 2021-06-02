@@ -82,7 +82,7 @@ Vue.component("item-preview-inventoryimage", {
 		}
 	},
 	template: /*html*/`
-		<img :src="imgsrc" :width="size" :height="size" style="image-rendering: crisp-edges;"/>
+		<img :src="imgsrc" :width="size" :height="size" style="image-rendering: crisp-edges; image-rendering: pixelated; image-rendering: -moz-crisp-edges;"/>
   `
 });
 
@@ -95,7 +95,7 @@ Vue.component("cube-face", {
 				width: this.size + "px",
 				height: this.size + "px",
 				"backface-visibility": "hidden",
-				"image-rendering": ["crisp-edges", "-webkit-optimize-contrast", "pixelated"],
+				"image-rendering": ["crisp-edges", "-webkit-optimize-contrast", "pixelated", "-moz-crisp-edges"],
 				"background-size": "cover",
 				"transform": `rotateX(${this.rotateX}) rotateY(${this.rotateY}) translateZ(${this.translateZ})`,
 				"background-image": `url(${this.img})`
