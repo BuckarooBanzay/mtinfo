@@ -6,3 +6,9 @@ mtinfo.screenshot_mod (the mod of the containing screenshot) string
 
 # Image on the start page
 mtinfo.screenshot_name (the name of the screenshot) string screenshot.png
+
+# mod activation
+mtinfo.enabled (activates the page generation) bool false
+
+# auto shutdown behavior
+mtinfo.autoshutdown (shutdown after generation) bool false
