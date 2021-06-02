@@ -36,6 +36,7 @@ Generates a static info-page about the world, stats include:
 
 * https://github.com/BuckarooBanzay
 * https://github.com/BobFred7
+* https://github.com/OgelGames
 
 # License
 
