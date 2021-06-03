@@ -3,8 +3,8 @@ Vue.component("item-detail", {
 	props: ["item"],
 	created: function(){
 		let abms = [];
-		if (mtinfo.abm_nodenames[this.name]){
-			abms.push(mtinfo.abm_nodenames[this.name]);
+		if (mtinfo.abm_nodenames[this.item.name]){
+			abms.push(mtinfo.abm_nodenames[this.item.name]);
 		}
 		if (this.item.groups){
 			Object.keys(this.item.groups).forEach(function(group){
