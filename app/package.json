@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update-deps": "sh ./update_deps.sh"
+    "update-deps": "sh ./update-deps.sh"
   },
   "author": "",
   "license": "ISC",
