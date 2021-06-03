@@ -26,7 +26,7 @@ Vue.component("abm-list", {
 			<template v-slot:row="{ item }">
 				<td>
                     <router-link :to="'/abms/' + item.key">
-                        {{ item.label }}
+                        {{ item.label || item.key }}
                     </router-link>
                 </td>
 				<td>
