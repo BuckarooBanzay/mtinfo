@@ -36,6 +36,8 @@ Vue.component("item-detail", {
 				<span v-if="item.airlike" class="badge badge-success">Airlike</span>
 				<span v-if="item.walkable" class="badge badge-success">Walkable</span>
 				<span v-if="item.cnc" class="badge badge-primary">CNC compatible</span>
+				<span v-if="item.mesecons" class="badge badge-primary">Mesecon component</span>
+				<span v-if="item.digiline" class="badge badge-primary">Digiline component</span>
 			</p>
 			<p>
 				Mod integrations:

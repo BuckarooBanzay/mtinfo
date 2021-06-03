@@ -42,7 +42,7 @@ function mtinfo.export_items()
 		else
 			return true
 		end
-	end, function(name, item)
+	end, function(name, item, def)
 		if has_moreblocks and circular_saw.known_nodes[name] then
 			-- moreblocks enabled
 			item.circular_saw = true
@@ -50,6 +50,14 @@ function mtinfo.export_items()
 		if has_technic_cnc and minetest.registered_items[name .. "_technic_cnc_slope"] then
 			-- partial or full cnc support
 			item.cnc = true
+		end
+
+		if def.mesecons then
+			item.mesecons = true
+		end
+
+		if def.digiline then
+			item.digiline = true
 		end
 	end)
 	mtinfo.export_json(mtinfo.basepath.."/data/items.js", data, "mtinfo.items")

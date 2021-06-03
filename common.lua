@@ -21,7 +21,7 @@ function mtinfo.map_list(target, list, keys, filter, enhancefn)
 					end
 				end
 			end
-			enhancefn(name, item)
+			enhancefn(name, item, def)
 			target[name] = item
 		end
 	end
