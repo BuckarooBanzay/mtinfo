@@ -56,7 +56,7 @@ function mtinfo.export_items()
 			item.mesecons = true
 		end
 
-		if def.digiline then
+		if def.digiline or def.digilines then
 			item.digiline = true
 		end
 	end)
