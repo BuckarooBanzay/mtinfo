@@ -1,21 +1,19 @@
 local MP = minetest.get_modpath("mtinfo")
 
-local mtinfo_enabled = minetest.settings:get_bool("mtinfo.enabled")
-local autoshutdown = minetest.settings:get_bool("mtinfo.autoshutdown")
-
-if not mtinfo_enabled then
-	-- skip everything
-	return
-end
-
 mtinfo = {
 	basepath = minetest.get_worldpath() .. "/mtinfo",
 	settings = {
 		startpage_mod = minetest.settings:get("mtinfo.startpage_mod"),
-		screenshot_mod = minetest.settings:get("mtinfo.screenshot_mod"),
-		screenshot_name = minetest.settings:get("mtinf.screenshot_name")
+		enabled = minetest.settings:get_bool("mtinfo.enabled"),
+		filter = minetest.settings:get_bool("mtinfo.filter"),
+		autoshutdown = minetest.settings:get_bool("mtinfo.autoshutdown")
 	}
 }
+
+if not mtinfo.settings.enabled then
+	-- skip everything
+	return
+end
 
 print("[mtinfo] Exporting mtinfo to: " .. mtinfo.basepath)
 dofile(MP .. "/common.lua")
@@ -54,7 +52,7 @@ minetest.register_on_mods_loaded(function()
 		local diff = minetest.get_us_time() - start
 		print("[mtinfo] export took " .. diff .. " us")
 
-		if autoshutdown then
+		if mtinfo.settings.autoshutdown then
 			minetest.request_shutdown("autoshutdown")
 		end
 	end)
