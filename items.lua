@@ -28,7 +28,8 @@ local item_mapped_keys = {
 	"light_source",
 	"damage_per_second",
 	"connects_to",
-	"drop"
+	"drop",
+	"mtinfo"
 }
 
 function mtinfo.export_items()
