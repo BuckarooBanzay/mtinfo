@@ -1,12 +1,3 @@
-# Useful for mod documentations
-mtinfo.startpage_mod (show the mod on the startpage) string
-
-# Image on the start page
-mtinfo.screenshot_mod (the mod of the containing screenshot) string
-
-# Image on the start page
-mtinfo.screenshot_name (the name of the screenshot) string screenshot.png
-
 # mod activation
 mtinfo.enabled (activates the page generation) bool false
 

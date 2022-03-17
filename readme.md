@@ -25,7 +25,7 @@ Generates a static info-page about the world, stats include:
 
 * Install the mod
 * Start the world
-* Open the generated `index.html` in the world-folder `mtinfo` with a web-browser
+* Publish the generated files under `<world-folder>/mtinfo` with a webbrowser
 
 ## Settings
 
