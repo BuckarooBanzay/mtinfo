@@ -13,7 +13,8 @@ function mtinfo.copy_texture_dir(src, target)
 	local dir_list = minetest.get_dir_list(src, true)
 	for _, subdir in pairs(dir_list) do
 		minetest.mkdir(target .. "/" .. subdir)
-		mtinfo.copy_texture_dir(src .. "/" .. subdir, target .. "/" .. subdir)
+		-- Merge src subdir into target
+		mtinfo.copy_texture_dir(src .. "/" .. subdir, target)
 	end
 end
 
