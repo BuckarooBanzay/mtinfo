@@ -1,5 +1,5 @@
 
-function mtinfo.export_recipes()
+function mtinfo.export_recipes(export_data)
 	local data = {}
 
 	for name in pairs(minetest.registered_items) do
@@ -57,7 +57,5 @@ function mtinfo.export_recipes()
 		end
 	end
 
-
-	mtinfo.export_json(mtinfo.basepath.."/data/recipes.js", data, "mtinfo.recipes")
-
+	export_data.recipes = data
 end
