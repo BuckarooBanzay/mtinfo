@@ -8,9 +8,8 @@ local abm_mapped_keys = {
 	"catch_up"
 }
 
-function mtinfo.export_abms()
+function mtinfo.export_abms(export_data)
   local data = {}
-
   mtinfo.map_list(data, minetest.registered_abms, abm_mapped_keys)
-  mtinfo.export_json(mtinfo.basepath.."/data/abm.js", data, "mtinfo.abm")
+  export_data.abms = data
 end

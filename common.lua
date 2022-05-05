@@ -61,14 +61,12 @@ function mtinfo.copyrecursive(src, target)
 	end
 end
 
-function mtinfo.export_json(fname, data, varname)
+function mtinfo.export_json(fname, data)
 	local f = io.open(fname, "w")
 	local data_string, err = minetest.write_json(data)
 	if err or not f then
 		error("error while opening " .. fname .. " " .. (err or ""))
 	end
-	f:write(varname .. "=")
 	f:write(data_string)
-	f:write(";")
 	io.close(f)
 end

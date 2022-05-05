@@ -32,7 +32,7 @@ local item_mapped_keys = {
 	"mtinfo"
 }
 
-function mtinfo.export_items()
+function mtinfo.export_items(export_data)
 	local data = {}
 	local has_moreblocks = minetest.get_modpath("moreblocks")
 	local has_technic_cnc = minetest.get_modpath("technic_cnc")
@@ -61,5 +61,5 @@ function mtinfo.export_items()
 			item.digiline = true
 		end
 	end)
-	mtinfo.export_json(mtinfo.basepath.."/data/items.js", data, "mtinfo.items")
+	export_data.items = data
 end

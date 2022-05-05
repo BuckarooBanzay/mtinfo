@@ -1,7 +1,12 @@
 local MP = minetest.get_modpath("mtinfo")
 
+local mtinfo_worlddir = minetest.get_worldpath() .. "/mtinfo"
+minetest.mkdir(mtinfo_worlddir)
+
 mtinfo = {
-	basepath = minetest.get_worldpath() .. "/mtinfo",
+	export_file = mtinfo_worlddir .. "/mtinfo.json",
+	-- export version
+	version = 1,
 	settings = {
 		enabled = minetest.settings:get_bool("mtinfo.enabled"),
 		autoshutdown = minetest.settings:get_bool("mtinfo.autoshutdown")
@@ -25,28 +30,23 @@ minetest.register_on_mods_loaded(function()
 	-- workaround for empty translations, defer a globalstep until everything is initialized
 	-- deferred by 1 second until technic.recipes is populated
 	minetest.after(1, function()
-		print("[mtinfo] Exporting mtinfo to: " .. mtinfo.basepath)
+		print("[mtinfo] Exporting mtinfo to: " .. mtinfo.export_file)
 		local start = minetest.get_us_time()
-
-		-- copy static assets
-		minetest.mkdir(mtinfo.basepath)
-		minetest.mkdir(mtinfo.basepath .. "/data")
+		local export_data = {
+			version = mtinfo.version
+		}
 
 		-- export data
-		mtinfo.export_lbms()
-		mtinfo.export_abms()
-		mtinfo.export_items()
-		mtinfo.export_recipes()
+		mtinfo.export_lbms(export_data)
+		mtinfo.export_abms(export_data)
+		mtinfo.export_items(export_data)
+		mtinfo.export_recipes(export_data)
 
 		-- export textures
-		mtinfo.export_textures()
+		mtinfo.export_textures(export_data)
 
-		mtinfo.copyrecursive(MP .. "/app/pics", mtinfo.basepath .. "/pics")
-		mtinfo.copyrecursive(MP .. "/app/js", mtinfo.basepath .. "/js")
-		mtinfo.copyrecursive(MP .. "/app/css", mtinfo.basepath .. "/css")
-		mtinfo.copyrecursive(MP .. "/app/webfonts", mtinfo.basepath .. "/webfonts")
-		mtinfo.copyfile(MP .. "/app/start-server.sh", mtinfo.basepath .. "/start-server.sh")
-		mtinfo.copyfile(MP .. "/app/index.html", mtinfo.basepath .. "/index.html")
+		-- write export_data to json file
+		mtinfo.export_json(mtinfo.export_file, export_data)
 
 		local diff = minetest.get_us_time() - start
 		print("[mtinfo] export took " .. diff .. " us")
