@@ -32,10 +32,12 @@ local item_mapped_keys = {
 	"mtinfo"
 }
 
+local has_old_moreblocks = minetest.get_modpath("moreblocks") and minetest.global_exists("circular_saw")
+local has_new_stairsplus = minetest.get_modpath("stairsplus") and stairsplus.api
+local has_technic_cnc = minetest.get_modpath("technic_cnc")
+
 function mtinfo.export_items()
 	local data = {}
-	local has_moreblocks = minetest.get_modpath("moreblocks")
-	local has_technic_cnc = minetest.get_modpath("technic_cnc")
 
 	mtinfo.map_list(data, minetest.registered_items, item_mapped_keys, function(def)
 		if def.groups and def.groups.not_in_creative_inventory then
@@ -44,9 +46,12 @@ function mtinfo.export_items()
 			return true
 		end
 	end, function(name, item, def)
-		if has_moreblocks and circular_saw.known_nodes[name] then
+		if has_old_moreblocks and circular_saw.known_nodes[name] then
 			-- moreblocks enabled
 			item.circular_saw = true
+		end
+		if has_new_stairsplus and stairsplus.api.get_shapes_hash(name) then
+			item.new_circular_saw = true
 		end
 		if has_technic_cnc and minetest.registered_items[name .. "_technic_cnc_slope"] then
 			-- partial or full cnc support
