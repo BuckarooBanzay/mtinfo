@@ -24,6 +24,7 @@ Generates a static info-page about the world, stats include:
 ## Usage
 
 * Install the mod
+* Enable the setting in minetest.conf (`mtinfo.enabled = true`)
 * Start the world
 * Open the generated `index.html` in the world-folder `mtinfo` with a web-browser
 
