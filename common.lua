@@ -28,7 +28,7 @@ function mtinfo.map_list(target, list, keys, filter, enhancefn)
 end
 
 function mtinfo.copyfile(src, target)
-	local infile = io.open(src, "r")
+	local infile = io.open(src, "rb")
 	local instr = infile:read("*a")
 	infile:close()
 
@@ -36,7 +36,7 @@ function mtinfo.copyfile(src, target)
 		return 0
 	end
 
-	local outfile, err = io.open(target, "w")
+	local outfile, err = io.open(target, "wb")
 	if not outfile then
 		error("File " .. target .. " could not be opened for writing! " .. err or "")
 	end
